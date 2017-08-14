@@ -4,20 +4,20 @@ This is the content of software testing techniques course offered at Kansas Stat
 
 Here are some aspects of the course.
 
-    - Class room instruction revolved around open questions posed to students.  [Socratic Method]
-    - Students answers were collected on the whiteboard and discussed to arrive at "expert" answers.
-    - Students directed instructor in live coding sessions to arrive at "expert" solutions.
-    - Sketch slides were used in class to drive discussion. The same slides were extended with highlights from classroom discussion and posted after class.
-    - Homework questions were seeded with ambiguity to simulate specification elicitation to resolve ambiguity and, consequently, identify testing boundaries.
-    - Textbooks were not required as there were none that described most of topics covered in the course.
-    - Few fringe/newer topics such as mutation testing and BDD were discussed in the course.
+- Class room instruction revolved around open questions posed to students.  [Socratic Method]
+- Students answers were collected on the whiteboard and discussed to arrive at "expert" answers.
+- Students directed instructor in live coding sessions to arrive at "expert" solutions.
+- Sketch slides were used in class to drive discussion. The same slides were extended with highlights from classroom discussion and posted after class.
+- Homework questions were seeded with ambiguity to simulate specification elicitation to resolve ambiguity and, consequently, identify testing boundaries.
+- Textbooks were not required as there were none that described most of topics covered in the course.
+- Few fringe/newer topics such as mutation testing and BDD were discussed in the course.
 
 The content contains
-    - content slide deck interspersed with answers collected in class and answers for homework,
-    - quiz question bank,
-    - homework assignments along with solutions and scripts to evaluate submissions,
-    - extra credit assignments along with solutions and scripts to evaluate submissions, and
-    - mid-term and end-term exams with solutions.
+- content slide deck interspersed with answers collected in class and answers for homework,
+- quiz question bank,
+- homework assignments along with solutions and scripts to evaluate submissions,
+- extra credit assignments along with solutions and scripts to evaluate submissions, and
+- mid-term and end-term exams with solutions.
 
 I hope folks will find this useful.
 
