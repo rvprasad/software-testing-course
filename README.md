@@ -13,7 +13,7 @@ Here are some aspects of the course.
 - Few fringe/newer topics such as mutation testing and BDD were discussed in the course.
 
 The content contains
-- content slide deck interspersed with answers collected in class and answers for homework,
+- content slide decks interspersed with answers collected in class and answers for homework,
 - quiz question bank,
 - homework assignments along with solutions and scripts to evaluate submissions,
 - extra credit assignments along with solutions and scripts to evaluate submissions, and
@@ -24,7 +24,7 @@ I hope folks will find this useful.
 
 ## Attribution
 
-Copyright (c) 2017, Venkatesh-Prasad Ranganath
+Copyright (c) 2016, Venkatesh-Prasad Ranganath
 
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 
