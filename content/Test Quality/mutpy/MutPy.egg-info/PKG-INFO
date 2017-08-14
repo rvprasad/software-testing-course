@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: MutPy
+Version: 0.4.0
+Summary: Mutation testing tool for Python 3.x source code.
+Home-page: https://bitbucket.org/khalas/mutpy
+Author: Konrad Hałas
+Author-email: halas.konrad@gmail.com
+License: UNKNOWN
+Download-URL: https://bitbucket.org/khalas/mutpy
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Testing
+Classifier: License :: OSI Approved :: Apache Software License

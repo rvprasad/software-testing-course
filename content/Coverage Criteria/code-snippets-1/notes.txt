@@ -1,0 +1,42 @@
+INSTALL
+pip install pytest-html
+
+
+EXECUTION
+pytest --html=report.html
+
+
+INSTALL
+pip install pytest-cov
+
+
+EXECUTION:
+py.test --cov-report=term --cov=. 
+ - terminal output for all code in current folder
+
+py.test --cov-report=term-missing --cov=. 
+ - terminal output for all code in current folder 
+ - with listing of missed line numbers
+
+py.test --cov-report=term-missing --cov=. --cov-config=coverage.rc
+ - terminal output for all code in current folder 
+ - with listing of missed line numbers
+ - with specific coverage configuration to control which bit of code needs to be measured
+
+py.test --cov-report=term-missing --cov=. --cov-config=coverage.rc --cov-fail-under=95
+ - terminal output for all code in current folder 
+ - with listing of missed line numbers
+ - with specific coverage configuration to control which bit of code needs to be measured
+ - report coverage less than 95# as failure
+
+py.test --cov-report=html --cov=. --cov-config=coverage.rc
+ - terminal output for all code in current folder 
+ - with listing of missed line numbers
+ - with specific coverage configuration to control which bit of code needs to be measured
+
+py.test --cov-report=html --cov=. --cov-config=coverage.rc --cov-fail-under=95
+ - html output for all code in current folder 
+ - with listing of missed line numbers
+ - with specific coverage configuration to control which bit of code needs to be measured
+ - report coverage less than 95% as failure
+

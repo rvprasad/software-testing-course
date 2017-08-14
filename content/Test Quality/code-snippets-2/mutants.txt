@@ -1,0 +1,14 @@
+[*] Start mutation process:
+   - targets: impl
+   - tests: test_impl
+[*] Tests failed:
+   - error in test_tic_tac_toe_check_incorrect_board_size (test_impl.TestClass) - TypeError: Board configuration should be a list 
+   - error in test_tic_tac_toe_check_multiple_symbols (test_impl.TestClass) - TypeError: Board configuration should be a list 
+   - error in test_tic_tac_toe_check_multiple_winning_patterns (test_impl.TestClass) - TypeError: Board configuration should be a list 
+   - error in test_tic_tac_toe_check_no_winning_pattern (test_impl.TestClass) - TypeError: Board configuration should be a list 
+   - error in test_tic_tac_toe_check_not_empty_string (test_impl.TestClass) - TypeError: Board configuration should be a list 
+   - error in test_tic_tac_toe_check_not_o (test_impl.TestClass) - TypeError: Board configuration should be a list 
+   - error in test_tic_tac_toe_check_not_x (test_impl.TestClass) - TypeError: Board configuration should be a list 
+   - error in test_tic_tac_toe_check_o_based_winning_pattern (test_impl.TestClass) - TypeError: Board configuration should be a list 
+   - error in test_tic_tac_toe_check_partial_board (test_impl.TestClass) - TypeError: Board configuration should be a list 
+   - error in test_tic_tac_toe_check_x_based_winning_pattern (test_impl.TestClass) - TypeError: Board configuration should be a list 

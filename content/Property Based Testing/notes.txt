@@ -1,0 +1,73 @@
+Intro:
+  - Example-based Testing: Pick an input x from the set of possible inputs X, compute f(x) = y, and check y == z for an expected z in the set of possible outputs Z.
+    - Easy to do
+    - Limited coverage - test inputs.
+    - Uses little automation
+    - More brittle
+    - Reasoning in terms of (concrete) values
+  - Property-based Testing: Pick random inputs x from the set of possible inputs X, compute f(x) = y, and check P(y) [or even P(x, y)] is true where P is an expected property.
+    - Harder to do.  May not be possible in some cases?
+    - Better coverage — test inputs.
+    - Uses more automation
+    - Less brittle
+    - Reasoning in terms of (abstract) properties
+
+
+Hypothesis:
+  - @given: strategies used to generate values
+  - @settings(max_examples=100)
+  - @assume: state assumptions that should hold for the test to be valid (or skip tests)
+  - @example helps add specific examples into the test "examples/data".  It can only occur with @given.
+  - @pytest.approx(value, rel-tolerance, abs-tolerance): helps deal with inexact comparisons.
+
+
+Example 1:
+Properties of a single function:
+  Properties of log(x, b) function where b > 1 and x > 0:
+    - log(x, x) = 1
+    - log(1, b) = 0
+    - log(x, b) = n ==> b**n = x
+    - log(xy, b) = log(x,b) + log(y,b)
+    - log(x/y, b) = log(x,b) - log(y,b)
+    - log(x**n, b) = n * log(x,b)
+    - log(x,c) / log(b,c) = log(x,b)
+
+
+Example 2:
+How can you test add(a, b) function without using the add operation?
+  - check add(x, y) == add(y, x)
+  - check add(x, add(y, z)) == add(add(x, y), z)
+  - check add(x, 0) == x
+  - check add(x, -x) == 0
+  - check add(x, y) > 0 if x >= 0 and y > 0 or x > 0 and y >= 0
+    - without this rule, we can concoct a trivial flawed add function
+
+Example 3:
+How can you test mul(a, b) function without using the multiply operation?
+  - check mul(x, y) == mul(y, x)
+  - check mul(x, mul(y, z)) == mul(mul(x, y), z)
+  - check mul(x, 1) == x
+  - check mul(x, -1) == -x
+  - check mul(x, 0) == 0
+  - check mul(-x, -x) == mul(x, x)
+  - check mul(x, y) != 0 if x != 0 and y != 0
+    - without this rule, we can concoct a trivial flawed mul function
+
+Common properties - identity, associativity, commutativity, idempotence
+
+Property discovery 
+  - operations in isolation
+    - valid/invalid inputs/outputs of operations, 
+    - normal/abnormal completions, 
+    - presence/absence of side-effects
+      - turning the steering wheel turns the wheels
+      - pressing the gas pedal, accelerates the car
+      - pressing the gas pedal shouldn’t affect the turn/angle of the wheel
+      - turning the steering wheel shouldn’t affect acceleration 
+  - combinations of operations
+
+Timing out tests
+  - pytest-timeout
+
+Approximate/inexact comparison
+  - pytest.approx

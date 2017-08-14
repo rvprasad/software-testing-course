@@ -1,0 +1,13 @@
+Specs:
+  - board configuration should be a list
+    - If not, raise TypeError exception
+  - board configuration should have 9 slots
+    - If not, raise ValueError exception
+  - all entries in board configuration should be strings
+    - If not, raise TypeError exception
+  - 'x', 'o', and '' are the only symbols in a board configuration
+    - If not, raise ValueError exception
+  - multiple winning patterns should raise ValueError exception
+    - this would disallow "xxxooxoox" as a valid configuration.
+  - return None if there are no winning patterns
+  - return x or o if there is a single winning pattern

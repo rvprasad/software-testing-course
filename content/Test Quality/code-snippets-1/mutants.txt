@@ -1,0 +1,1976 @@
+[*] Start mutation process:
+   - targets: impl
+   - tests: test_impl
+[*] 27 tests passed:
+   - test_impl [0.00199 s]
+[*] Start mutants generation and execution:
+   - [#   1] AOR impl:17 : 
+--------------------------------------------------------------------------------
+ 13:         
+ 14:         year = int(t[2])
+ 15:         if (year < 1900 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+~17:         is_leap = (year * 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+--------------------------------------------------------------------------------
+[0.00778 s] killed by test_set_date_valid_values (test_impl.TestPhysicalInfo)
+   - [#   2] AOR impl:17 : 
+--------------------------------------------------------------------------------
+ 13:         
+ 14:         year = int(t[2])
+ 15:         if (year < 1900 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+~17:         is_leap = (year % 4 == 0 and (year * 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+--------------------------------------------------------------------------------
+[0.00675 s] survived
+   - [#   3] AOR impl:17 : 
+--------------------------------------------------------------------------------
+ 13:         
+ 14:         year = int(t[2])
+ 15:         if (year < 1900 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+~17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year * 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+--------------------------------------------------------------------------------
+[0.00714 s] killed by test_set_date_invalid_day (test_impl.TestPhysicalInfo)
+   - [#   4] COD impl:6  : 
+--------------------------------------------------------------------------------
+  2: 
+  3: class PhysicalInfo(object):
+  4:     
+  5:     def set_date(self, date):
+~ 6:         if isinstance(date, str):
+  7:             raise ValueError('date should be a string')
+  8:         t = date.split('-')
+  9:         if len(t) != 3:
+ 10:             raise ValueError('date should be in MM-DD-YYYY format')
+ 11:         if re.search('[^0-9\\-]', date):
+--------------------------------------------------------------------------------
+[0.00737 s] killed by test_set_date_non_string (test_impl.TestPhysicalInfo)
+   - [#   5] COD impl:38 : 
+--------------------------------------------------------------------------------
+ 34:         
+ 35:         self.date = date
+ 36:     
+ 37:     def set_name(self, name):
+~38:         if isinstance(name, str):
+ 39:             raise ValueError('name should be a string')
+ 40:         tmp1 = name.lower()
+ 41:         if re.search('[^a-z0-9 -]', tmp1):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+ 43:         if (len(tmp1.strip()) < 2 or len(tmp1.replace('-', '')) < 2):
+--------------------------------------------------------------------------------
+[0.00678 s] killed by test_set_name_non_string (test_impl.TestPhysicalInfo)
+   - [#   6] COD impl:45 : 
+--------------------------------------------------------------------------------
+ 41:         if re.search('[^a-z0-9 -]', tmp1):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+ 43:         if (len(tmp1.strip()) < 2 or len(tmp1.replace('-', '')) < 2):
+ 44:             raise ValueError('name should be at least two characters long')
+~45:         if re.search('[a-z]', tmp1):
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+ 49:     def set_gender(self, gender):
+ 50:         if (gender != 'M' and gender != 'F'):
+--------------------------------------------------------------------------------
+[0.00708 s] killed by test_set_name_no_letter_name (test_impl.TestPhysicalInfo)
+   - [#   7] COD impl:55 : 
+--------------------------------------------------------------------------------
+ 51:             raise ValueError('gender should be either M or F')
+ 52:         self.gender = gender
+ 53:     
+ 54:     def set_height(self, height):
+~55:         if isinstance(height, int):
+ 56:             raise ValueError('height should be an integer')
+ 57:         if (height < 17 or height > 84):
+ 58:             raise ValueError('height should be an integer between 17 and 84')
+ 59:         self.height = height
+ 60:     
+--------------------------------------------------------------------------------
+[0.00724 s] killed by test_set_height_non_integer (test_impl.TestPhysicalInfo)
+   - [#   8] COD impl:62 : 
+--------------------------------------------------------------------------------
+ 58:             raise ValueError('height should be an integer between 17 and 84')
+ 59:         self.height = height
+ 60:     
+ 61:     def set_temperature(self, temperature):
+~62:         if isinstance(temperature, float):
+ 63:             raise ValueError('temperature should be a float')
+ 64:         if (temperature < 95 or temperature > 104):
+ 65:             raise ValueError('temperature should be a float between 95 and 104')
+ 66:         self.temperature = temperature
+--------------------------------------------------------------------------------
+[0.00781 s] killed by test_set_temperature_non_float (test_impl.TestPhysicalInfo)
+   - [#   9] COI impl:6  : 
+--------------------------------------------------------------------------------
+  2: 
+  3: class PhysicalInfo(object):
+  4:     
+  5:     def set_date(self, date):
+~ 6:         if (not (not isinstance(date, str))):
+  7:             raise ValueError('date should be a string')
+  8:         t = date.split('-')
+  9:         if len(t) != 3:
+ 10:             raise ValueError('date should be in MM-DD-YYYY format')
+ 11:         if re.search('[^0-9\\-]', date):
+--------------------------------------------------------------------------------
+[0.00624 s] killed by test_set_date_non_string (test_impl.TestPhysicalInfo)
+   - [#  10] COI impl:9  : 
+--------------------------------------------------------------------------------
+  5:     def set_date(self, date):
+  6:         if (not isinstance(date, str)):
+  7:             raise ValueError('date should be a string')
+  8:         t = date.split('-')
+~ 9:         if (not len(t) != 3):
+ 10:             raise ValueError('date should be in MM-DD-YYYY format')
+ 11:         if re.search('[^0-9\\-]', date):
+ 12:             raise ValueError('date should contain only numbers and -')
+ 13:         
+ 14:         year = int(t[2])
+--------------------------------------------------------------------------------
+[0.00692 s] killed by test_set_date_invalid_format (test_impl.TestPhysicalInfo)
+   - [#  11] COI impl:11 : 
+--------------------------------------------------------------------------------
+  7:             raise ValueError('date should be a string')
+  8:         t = date.split('-')
+  9:         if len(t) != 3:
+ 10:             raise ValueError('date should be in MM-DD-YYYY format')
+~11:         if (not re.search('[^0-9\\-]', date)):
+ 12:             raise ValueError('date should contain only numbers and -')
+ 13:         
+ 14:         year = int(t[2])
+ 15:         if (year < 1900 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+--------------------------------------------------------------------------------
+[0.00639 s] killed by test_set_date_valid_values (test_impl.TestPhysicalInfo)
+   - [#  12] COI impl:15 : 
+--------------------------------------------------------------------------------
+ 11:         if re.search('[^0-9\\-]', date):
+ 12:             raise ValueError('date should contain only numbers and -')
+ 13:         
+ 14:         year = int(t[2])
+~15:         if (not (year < 1900 or year > 2100)):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+--------------------------------------------------------------------------------
+[0.00651 s] killed by test_set_date_invalid_year (test_impl.TestPhysicalInfo)
+   - [#  13] COI impl:20 : 
+--------------------------------------------------------------------------------
+ 16:             raise ValueError('invalid year {0}'.format(year))
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+~20:         if (not (month < 1 or month > 12)):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+ 23:         if month in [4, 6, 7, 9, 11]:
+ 24:             day_limit = 30
+ 25:         elif month == 2:
+--------------------------------------------------------------------------------
+[0.00598 s] killed by test_set_date_invalid_month (test_impl.TestPhysicalInfo)
+   - [#  14] COI impl:23 : 
+--------------------------------------------------------------------------------
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+~23:         if (not month in [4, 6, 7, 9, 11]):
+ 24:             day_limit = 30
+ 25:         elif month == 2:
+ 26:             if is_leap:
+ 27:                 day_limit = 29
+ 28:             else:
+--------------------------------------------------------------------------------
+[0.00763 s] killed by test_set_date_invalid_day (test_impl.TestPhysicalInfo)
+   - [#  15] COI impl:23 : 
+--------------------------------------------------------------------------------
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+~23:         if month not in [4, 6, 7, 9, 11]:
+ 24:             day_limit = 30
+ 25:         elif month == 2:
+ 26:             if is_leap:
+ 27:                 day_limit = 29
+ 28:             else:
+--------------------------------------------------------------------------------
+[0.00767 s] killed by test_set_date_invalid_day (test_impl.TestPhysicalInfo)
+   - [#  16] COI impl:25 : 
+--------------------------------------------------------------------------------
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+ 23:         if month in [4, 6, 7, 9, 11]:
+ 24:             day_limit = 30
+~25:         elif (not month == 2):
+ 26:             if is_leap:
+ 27:                 day_limit = 29
+ 28:             else:
+ 29:                 day_limit = 28
+ 30:         
+--------------------------------------------------------------------------------
+[0.00625 s] killed by test_set_date_invalid_day (test_impl.TestPhysicalInfo)
+   - [#  17] COI impl:26 : 
+--------------------------------------------------------------------------------
+ 22:         day_limit = 31
+ 23:         if month in [4, 6, 7, 9, 11]:
+ 24:             day_limit = 30
+ 25:         elif month == 2:
+~26:             if (not is_leap):
+ 27:                 day_limit = 29
+ 28:             else:
+ 29:                 day_limit = 28
+ 30:         
+ 31:         day = int(t[1])
+--------------------------------------------------------------------------------
+[0.00594 s] killed by test_set_date_invalid_day (test_impl.TestPhysicalInfo)
+   - [#  18] COI impl:32 : 
+--------------------------------------------------------------------------------
+ 28:             else:
+ 29:                 day_limit = 28
+ 30:         
+ 31:         day = int(t[1])
+~32:         if (not (day < 1 or day > day_limit)):
+ 33:             raise ValueError('invalid day {0}'.format(day))
+ 34:         
+ 35:         self.date = date
+ 36:     
+ 37:     def set_name(self, name):
+--------------------------------------------------------------------------------
+[0.00625 s] killed by test_set_date_invalid_day (test_impl.TestPhysicalInfo)
+   - [#  19] COI impl:38 : 
+--------------------------------------------------------------------------------
+ 34:         
+ 35:         self.date = date
+ 36:     
+ 37:     def set_name(self, name):
+~38:         if (not (not isinstance(name, str))):
+ 39:             raise ValueError('name should be a string')
+ 40:         tmp1 = name.lower()
+ 41:         if re.search('[^a-z0-9 -]', tmp1):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+ 43:         if (len(tmp1.strip()) < 2 or len(tmp1.replace('-', '')) < 2):
+--------------------------------------------------------------------------------
+[0.00867 s] killed by test_set_name_non_string (test_impl.TestPhysicalInfo)
+   - [#  20] COI impl:41 : 
+--------------------------------------------------------------------------------
+ 37:     def set_name(self, name):
+ 38:         if (not isinstance(name, str)):
+ 39:             raise ValueError('name should be a string')
+ 40:         tmp1 = name.lower()
+~41:         if (not re.search('[^a-z0-9 -]', tmp1)):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+ 43:         if (len(tmp1.strip()) < 2 or len(tmp1.replace('-', '')) < 2):
+ 44:             raise ValueError('name should be at least two characters long')
+ 45:         if (not re.search('[a-z]', tmp1)):
+ 46:             raise ValueError('name should contain at least one character')
+--------------------------------------------------------------------------------
+[0.00754 s] killed by test_set_name_invalid_character_name (test_impl.TestPhysicalInfo)
+   - [#  21] COI impl:43 : 
+--------------------------------------------------------------------------------
+ 39:             raise ValueError('name should be a string')
+ 40:         tmp1 = name.lower()
+ 41:         if re.search('[^a-z0-9 -]', tmp1):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+~43:         if (not (len(tmp1.strip()) < 2 or len(tmp1.replace('-', '')) < 2)):
+ 44:             raise ValueError('name should be at least two characters long')
+ 45:         if (not re.search('[a-z]', tmp1)):
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+--------------------------------------------------------------------------------
+[0.00798 s] killed by test_set_name_one_character_long_name (test_impl.TestPhysicalInfo)
+   - [#  22] COI impl:45 : 
+--------------------------------------------------------------------------------
+ 41:         if re.search('[^a-z0-9 -]', tmp1):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+ 43:         if (len(tmp1.strip()) < 2 or len(tmp1.replace('-', '')) < 2):
+ 44:             raise ValueError('name should be at least two characters long')
+~45:         if (not (not re.search('[a-z]', tmp1))):
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+ 49:     def set_gender(self, gender):
+ 50:         if (gender != 'M' and gender != 'F'):
+--------------------------------------------------------------------------------
+[0.00686 s] killed by test_set_name_no_letter_name (test_impl.TestPhysicalInfo)
+   - [#  23] COI impl:50 : 
+--------------------------------------------------------------------------------
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+ 49:     def set_gender(self, gender):
+~50:         if (not (gender != 'M' and gender != 'F')):
+ 51:             raise ValueError('gender should be either M or F')
+ 52:         self.gender = gender
+ 53:     
+ 54:     def set_height(self, height):
+ 55:         if (not isinstance(height, int)):
+--------------------------------------------------------------------------------
+[0.00772 s] killed by test_set_gender_invalid_values (test_impl.TestPhysicalInfo)
+   - [#  24] COI impl:55 : 
+--------------------------------------------------------------------------------
+ 51:             raise ValueError('gender should be either M or F')
+ 52:         self.gender = gender
+ 53:     
+ 54:     def set_height(self, height):
+~55:         if (not (not isinstance(height, int))):
+ 56:             raise ValueError('height should be an integer')
+ 57:         if (height < 17 or height > 84):
+ 58:             raise ValueError('height should be an integer between 17 and 84')
+ 59:         self.height = height
+ 60:     
+--------------------------------------------------------------------------------
+[0.00745 s] killed by test_set_height_non_integer (test_impl.TestPhysicalInfo)
+   - [#  25] COI impl:57 : 
+--------------------------------------------------------------------------------
+ 53:     
+ 54:     def set_height(self, height):
+ 55:         if (not isinstance(height, int)):
+ 56:             raise ValueError('height should be an integer')
+~57:         if (not (height < 17 or height > 84)):
+ 58:             raise ValueError('height should be an integer between 17 and 84')
+ 59:         self.height = height
+ 60:     
+ 61:     def set_temperature(self, temperature):
+ 62:         if (not isinstance(temperature, float)):
+--------------------------------------------------------------------------------
+[0.00742 s] killed by test_set_height_out_of_range (test_impl.TestPhysicalInfo)
+   - [#  26] COI impl:62 : 
+--------------------------------------------------------------------------------
+ 58:             raise ValueError('height should be an integer between 17 and 84')
+ 59:         self.height = height
+ 60:     
+ 61:     def set_temperature(self, temperature):
+~62:         if (not (not isinstance(temperature, float))):
+ 63:             raise ValueError('temperature should be a float')
+ 64:         if (temperature < 95 or temperature > 104):
+ 65:             raise ValueError('temperature should be a float between 95 and 104')
+ 66:         self.temperature = temperature
+--------------------------------------------------------------------------------
+[0.00675 s] killed by test_set_temperature_non_float (test_impl.TestPhysicalInfo)
+   - [#  27] COI impl:64 : 
+--------------------------------------------------------------------------------
+ 60:     
+ 61:     def set_temperature(self, temperature):
+ 62:         if (not isinstance(temperature, float)):
+ 63:             raise ValueError('temperature should be a float')
+~64:         if (not (temperature < 95 or temperature > 104)):
+ 65:             raise ValueError('temperature should be a float between 95 and 104')
+ 66:         self.temperature = temperature
+--------------------------------------------------------------------------------
+[0.00739 s] killed by test_set_temperature_out_of_range (test_impl.TestPhysicalInfo)
+   - [#  28] CRP impl:7  : 
+--------------------------------------------------------------------------------
+  3: class PhysicalInfo(object):
+  4:     
+  5:     def set_date(self, date):
+  6:         if (not isinstance(date, str)):
+~ 7:             raise ValueError('mutpy')
+  8:         t = date.split('-')
+  9:         if len(t) != 3:
+ 10:             raise ValueError('date should be in MM-DD-YYYY format')
+ 11:         if re.search('[^0-9\\-]', date):
+ 12:             raise ValueError('date should contain only numbers and -')
+--------------------------------------------------------------------------------
+[0.00688 s] survived
+   - [#  29] CRP impl:7  : 
+--------------------------------------------------------------------------------
+  3: class PhysicalInfo(object):
+  4:     
+  5:     def set_date(self, date):
+  6:         if (not isinstance(date, str)):
+~ 7:             raise ValueError('')
+  8:         t = date.split('-')
+  9:         if len(t) != 3:
+ 10:             raise ValueError('date should be in MM-DD-YYYY format')
+ 11:         if re.search('[^0-9\\-]', date):
+ 12:             raise ValueError('date should contain only numbers and -')
+--------------------------------------------------------------------------------
+[0.00658 s] survived
+   - [#  30] CRP impl:8  : 
+--------------------------------------------------------------------------------
+  4:     
+  5:     def set_date(self, date):
+  6:         if (not isinstance(date, str)):
+  7:             raise ValueError('date should be a string')
+~ 8:         t = date.split('mutpy')
+  9:         if len(t) != 3:
+ 10:             raise ValueError('date should be in MM-DD-YYYY format')
+ 11:         if re.search('[^0-9\\-]', date):
+ 12:             raise ValueError('date should contain only numbers and -')
+ 13:         
+--------------------------------------------------------------------------------
+[0.00692 s] killed by test_set_date_valid_values (test_impl.TestPhysicalInfo)
+   - [#  31] CRP impl:8  : 
+--------------------------------------------------------------------------------
+  4:     
+  5:     def set_date(self, date):
+  6:         if (not isinstance(date, str)):
+  7:             raise ValueError('date should be a string')
+~ 8:         t = date.split('')
+  9:         if len(t) != 3:
+ 10:             raise ValueError('date should be in MM-DD-YYYY format')
+ 11:         if re.search('[^0-9\\-]', date):
+ 12:             raise ValueError('date should contain only numbers and -')
+ 13:         
+--------------------------------------------------------------------------------
+[0.00599 s] killed by test_set_date_valid_values (test_impl.TestPhysicalInfo)
+   - [#  32] CRP impl:9  : 
+--------------------------------------------------------------------------------
+  5:     def set_date(self, date):
+  6:         if (not isinstance(date, str)):
+  7:             raise ValueError('date should be a string')
+  8:         t = date.split('-')
+~ 9:         if len(t) != 4:
+ 10:             raise ValueError('date should be in MM-DD-YYYY format')
+ 11:         if re.search('[^0-9\\-]', date):
+ 12:             raise ValueError('date should contain only numbers and -')
+ 13:         
+ 14:         year = int(t[2])
+--------------------------------------------------------------------------------
+[0.00675 s] killed by test_set_date_invalid_format (test_impl.TestPhysicalInfo)
+   - [#  33] CRP impl:10 : 
+--------------------------------------------------------------------------------
+  6:         if (not isinstance(date, str)):
+  7:             raise ValueError('date should be a string')
+  8:         t = date.split('-')
+  9:         if len(t) != 3:
+~10:             raise ValueError('mutpy')
+ 11:         if re.search('[^0-9\\-]', date):
+ 12:             raise ValueError('date should contain only numbers and -')
+ 13:         
+ 14:         year = int(t[2])
+ 15:         if (year < 1900 or year > 2100):
+--------------------------------------------------------------------------------
+[0.00704 s] survived
+   - [#  34] CRP impl:10 : 
+--------------------------------------------------------------------------------
+  6:         if (not isinstance(date, str)):
+  7:             raise ValueError('date should be a string')
+  8:         t = date.split('-')
+  9:         if len(t) != 3:
+~10:             raise ValueError('')
+ 11:         if re.search('[^0-9\\-]', date):
+ 12:             raise ValueError('date should contain only numbers and -')
+ 13:         
+ 14:         year = int(t[2])
+ 15:         if (year < 1900 or year > 2100):
+--------------------------------------------------------------------------------
+[0.00695 s] survived
+   - [#  35] CRP impl:11 : 
+--------------------------------------------------------------------------------
+  7:             raise ValueError('date should be a string')
+  8:         t = date.split('-')
+  9:         if len(t) != 3:
+ 10:             raise ValueError('date should be in MM-DD-YYYY format')
+~11:         if re.search('mutpy', date):
+ 12:             raise ValueError('date should contain only numbers and -')
+ 13:         
+ 14:         year = int(t[2])
+ 15:         if (year < 1900 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+--------------------------------------------------------------------------------
+[0.00640 s] survived
+   - [#  36] CRP impl:11 : 
+--------------------------------------------------------------------------------
+  7:             raise ValueError('date should be a string')
+  8:         t = date.split('-')
+  9:         if len(t) != 3:
+ 10:             raise ValueError('date should be in MM-DD-YYYY format')
+~11:         if re.search('', date):
+ 12:             raise ValueError('date should contain only numbers and -')
+ 13:         
+ 14:         year = int(t[2])
+ 15:         if (year < 1900 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+--------------------------------------------------------------------------------
+[0.00672 s] killed by test_set_date_valid_values (test_impl.TestPhysicalInfo)
+   - [#  37] CRP impl:12 : 
+--------------------------------------------------------------------------------
+  8:         t = date.split('-')
+  9:         if len(t) != 3:
+ 10:             raise ValueError('date should be in MM-DD-YYYY format')
+ 11:         if re.search('[^0-9\\-]', date):
+~12:             raise ValueError('mutpy')
+ 13:         
+ 14:         year = int(t[2])
+ 15:         if (year < 1900 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+--------------------------------------------------------------------------------
+[0.00721 s] survived
+   - [#  38] CRP impl:12 : 
+--------------------------------------------------------------------------------
+  8:         t = date.split('-')
+  9:         if len(t) != 3:
+ 10:             raise ValueError('date should be in MM-DD-YYYY format')
+ 11:         if re.search('[^0-9\\-]', date):
+~12:             raise ValueError('')
+ 13:         
+ 14:         year = int(t[2])
+ 15:         if (year < 1900 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+--------------------------------------------------------------------------------
+[0.00619 s] survived
+   - [#  39] CRP impl:14 : 
+--------------------------------------------------------------------------------
+ 10:             raise ValueError('date should be in MM-DD-YYYY format')
+ 11:         if re.search('[^0-9\\-]', date):
+ 12:             raise ValueError('date should contain only numbers and -')
+ 13:         
+~14:         year = int(t[3])
+ 15:         if (year < 1900 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+--------------------------------------------------------------------------------
+[0.00754 s] killed by test_set_date_invalid_day (test_impl.TestPhysicalInfo)
+   - [#  40] CRP impl:15 : 
+--------------------------------------------------------------------------------
+ 11:         if re.search('[^0-9\\-]', date):
+ 12:             raise ValueError('date should contain only numbers and -')
+ 13:         
+ 14:         year = int(t[2])
+~15:         if (year < 1901 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+--------------------------------------------------------------------------------
+[0.00736 s] survived
+   - [#  41] CRP impl:15 : 
+--------------------------------------------------------------------------------
+ 11:         if re.search('[^0-9\\-]', date):
+ 12:             raise ValueError('date should contain only numbers and -')
+ 13:         
+ 14:         year = int(t[2])
+~15:         if (year < 1900 or year > 2101):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+--------------------------------------------------------------------------------
+[0.00639 s] killed by test_set_date_invalid_year (test_impl.TestPhysicalInfo)
+   - [#  42] CRP impl:16 : 
+--------------------------------------------------------------------------------
+ 12:             raise ValueError('date should contain only numbers and -')
+ 13:         
+ 14:         year = int(t[2])
+ 15:         if (year < 1900 or year > 2100):
+~16:             raise ValueError('mutpy'.format(year))
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+--------------------------------------------------------------------------------
+[0.00706 s] survived
+   - [#  43] CRP impl:16 : 
+--------------------------------------------------------------------------------
+ 12:             raise ValueError('date should contain only numbers and -')
+ 13:         
+ 14:         year = int(t[2])
+ 15:         if (year < 1900 or year > 2100):
+~16:             raise ValueError(''.format(year))
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+--------------------------------------------------------------------------------
+[0.00648 s] survived
+   - [#  44] CRP impl:17 : 
+--------------------------------------------------------------------------------
+ 13:         
+ 14:         year = int(t[2])
+ 15:         if (year < 1900 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+~17:         is_leap = (year % 5 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+--------------------------------------------------------------------------------
+[0.00654 s] killed by test_set_date_invalid_day (test_impl.TestPhysicalInfo)
+   - [#  45] CRP impl:17 : 
+--------------------------------------------------------------------------------
+ 13:         
+ 14:         year = int(t[2])
+ 15:         if (year < 1900 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+~17:         is_leap = (year % 4 == 1 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+--------------------------------------------------------------------------------
+[0.00622 s] killed by test_set_date_valid_values (test_impl.TestPhysicalInfo)
+   - [#  46] CRP impl:17 : 
+--------------------------------------------------------------------------------
+ 13:         
+ 14:         year = int(t[2])
+ 15:         if (year < 1900 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+~17:         is_leap = (year % 4 == 0 and (year % 401 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+--------------------------------------------------------------------------------
+[0.00743 s] survived
+   - [#  47] CRP impl:17 : 
+--------------------------------------------------------------------------------
+ 13:         
+ 14:         year = int(t[2])
+ 15:         if (year < 1900 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+~17:         is_leap = (year % 4 == 0 and (year % 400 == 1 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+--------------------------------------------------------------------------------
+[0.00704 s] survived
+   - [#  48] CRP impl:17 : 
+--------------------------------------------------------------------------------
+ 13:         
+ 14:         year = int(t[2])
+ 15:         if (year < 1900 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+~17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 101 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+--------------------------------------------------------------------------------
+[0.00569 s] killed by test_set_date_invalid_day (test_impl.TestPhysicalInfo)
+   - [#  49] CRP impl:17 : 
+--------------------------------------------------------------------------------
+ 13:         
+ 14:         year = int(t[2])
+ 15:         if (year < 1900 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+~17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 1))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+--------------------------------------------------------------------------------
+[0.00706 s] killed by test_set_date_invalid_day (test_impl.TestPhysicalInfo)
+   - [#  50] CRP impl:19 : 
+--------------------------------------------------------------------------------
+ 15:         if (year < 1900 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+~19:         month = int(t[1])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+ 23:         if month in [4, 6, 7, 9, 11]:
+ 24:             day_limit = 30
+--------------------------------------------------------------------------------
+[0.00657 s] killed by test_set_date_invalid_month (test_impl.TestPhysicalInfo)
+   - [#  51] CRP impl:20 : 
+--------------------------------------------------------------------------------
+ 16:             raise ValueError('invalid year {0}'.format(year))
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+~20:         if (month < 2 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+ 23:         if month in [4, 6, 7, 9, 11]:
+ 24:             day_limit = 30
+ 25:         elif month == 2:
+--------------------------------------------------------------------------------
+[0.00637 s] killed by test_set_date_valid_values (test_impl.TestPhysicalInfo)
+   - [#  52] CRP impl:20 : 
+--------------------------------------------------------------------------------
+ 16:             raise ValueError('invalid year {0}'.format(year))
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+~20:         if (month < 1 or month > 13):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+ 23:         if month in [4, 6, 7, 9, 11]:
+ 24:             day_limit = 30
+ 25:         elif month == 2:
+--------------------------------------------------------------------------------
+[0.00674 s] killed by test_set_date_invalid_month (test_impl.TestPhysicalInfo)
+   - [#  53] CRP impl:21 : 
+--------------------------------------------------------------------------------
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+~21:             raise ValueError('mutpy'.format(month))
+ 22:         day_limit = 31
+ 23:         if month in [4, 6, 7, 9, 11]:
+ 24:             day_limit = 30
+ 25:         elif month == 2:
+ 26:             if is_leap:
+--------------------------------------------------------------------------------
+[0.00647 s] survived
+   - [#  54] CRP impl:21 : 
+--------------------------------------------------------------------------------
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+~21:             raise ValueError(''.format(month))
+ 22:         day_limit = 31
+ 23:         if month in [4, 6, 7, 9, 11]:
+ 24:             day_limit = 30
+ 25:         elif month == 2:
+ 26:             if is_leap:
+--------------------------------------------------------------------------------
+[0.00684 s] survived
+   - [#  55] CRP impl:22 : 
+--------------------------------------------------------------------------------
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+~22:         day_limit = 32
+ 23:         if month in [4, 6, 7, 9, 11]:
+ 24:             day_limit = 30
+ 25:         elif month == 2:
+ 26:             if is_leap:
+ 27:                 day_limit = 29
+--------------------------------------------------------------------------------
+[0.00559 s] killed by test_set_date_invalid_day (test_impl.TestPhysicalInfo)
+   - [#  56] CRP impl:23 : 
+--------------------------------------------------------------------------------
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+~23:         if month in [5, 6, 7, 9, 11]:
+ 24:             day_limit = 30
+ 25:         elif month == 2:
+ 26:             if is_leap:
+ 27:                 day_limit = 29
+ 28:             else:
+--------------------------------------------------------------------------------
+[0.00661 s] killed by test_set_date_invalid_day (test_impl.TestPhysicalInfo)
+   - [#  57] CRP impl:23 : 
+--------------------------------------------------------------------------------
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+~23:         if month in [4, 7, 7, 9, 11]:
+ 24:             day_limit = 30
+ 25:         elif month == 2:
+ 26:             if is_leap:
+ 27:                 day_limit = 29
+ 28:             else:
+--------------------------------------------------------------------------------
+[0.00690 s] survived
+   - [#  58] CRP impl:23 : 
+--------------------------------------------------------------------------------
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+~23:         if month in [4, 6, 8, 9, 11]:
+ 24:             day_limit = 30
+ 25:         elif month == 2:
+ 26:             if is_leap:
+ 27:                 day_limit = 29
+ 28:             else:
+--------------------------------------------------------------------------------
+[0.00634 s] survived
+   - [#  59] CRP impl:23 : 
+--------------------------------------------------------------------------------
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+~23:         if month in [4, 6, 7, 10, 11]:
+ 24:             day_limit = 30
+ 25:         elif month == 2:
+ 26:             if is_leap:
+ 27:                 day_limit = 29
+ 28:             else:
+--------------------------------------------------------------------------------
+[0.00677 s] survived
+   - [#  60] CRP impl:23 : 
+--------------------------------------------------------------------------------
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+~23:         if month in [4, 6, 7, 9, 12]:
+ 24:             day_limit = 30
+ 25:         elif month == 2:
+ 26:             if is_leap:
+ 27:                 day_limit = 29
+ 28:             else:
+--------------------------------------------------------------------------------
+[0.00633 s] survived
+   - [#  61] CRP impl:24 : 
+--------------------------------------------------------------------------------
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+ 23:         if month in [4, 6, 7, 9, 11]:
+~24:             day_limit = 31
+ 25:         elif month == 2:
+ 26:             if is_leap:
+ 27:                 day_limit = 29
+ 28:             else:
+ 29:                 day_limit = 28
+--------------------------------------------------------------------------------
+[0.00785 s] killed by test_set_date_invalid_day (test_impl.TestPhysicalInfo)
+   - [#  62] CRP impl:25 : 
+--------------------------------------------------------------------------------
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+ 23:         if month in [4, 6, 7, 9, 11]:
+ 24:             day_limit = 30
+~25:         elif month == 3:
+ 26:             if is_leap:
+ 27:                 day_limit = 29
+ 28:             else:
+ 29:                 day_limit = 28
+ 30:         
+--------------------------------------------------------------------------------
+[0.00723 s] killed by test_set_date_invalid_day (test_impl.TestPhysicalInfo)
+   - [#  63] CRP impl:27 : 
+--------------------------------------------------------------------------------
+ 23:         if month in [4, 6, 7, 9, 11]:
+ 24:             day_limit = 30
+ 25:         elif month == 2:
+ 26:             if is_leap:
+~27:                 day_limit = 30
+ 28:             else:
+ 29:                 day_limit = 28
+ 30:         
+ 31:         day = int(t[1])
+ 32:         if (day < 1 or day > day_limit):
+--------------------------------------------------------------------------------
+[0.00605 s] killed by test_set_date_invalid_day (test_impl.TestPhysicalInfo)
+   - [#  64] CRP impl:29 : 
+--------------------------------------------------------------------------------
+ 25:         elif month == 2:
+ 26:             if is_leap:
+ 27:                 day_limit = 29
+ 28:             else:
+~29:                 day_limit = 29
+ 30:         
+ 31:         day = int(t[1])
+ 32:         if (day < 1 or day > day_limit):
+ 33:             raise ValueError('invalid day {0}'.format(day))
+ 34:         
+--------------------------------------------------------------------------------
+[0.00677 s] killed by test_set_date_invalid_day (test_impl.TestPhysicalInfo)
+   - [#  65] CRP impl:31 : 
+--------------------------------------------------------------------------------
+ 27:                 day_limit = 29
+ 28:             else:
+ 29:                 day_limit = 28
+ 30:         
+~31:         day = int(t[2])
+ 32:         if (day < 1 or day > day_limit):
+ 33:             raise ValueError('invalid day {0}'.format(day))
+ 34:         
+ 35:         self.date = date
+ 36:     
+--------------------------------------------------------------------------------
+[0.00801 s] killed by test_set_date_valid_values (test_impl.TestPhysicalInfo)
+   - [#  66] CRP impl:32 : 
+--------------------------------------------------------------------------------
+ 28:             else:
+ 29:                 day_limit = 28
+ 30:         
+ 31:         day = int(t[1])
+~32:         if (day < 2 or day > day_limit):
+ 33:             raise ValueError('invalid day {0}'.format(day))
+ 34:         
+ 35:         self.date = date
+ 36:     
+ 37:     def set_name(self, name):
+--------------------------------------------------------------------------------
+[0.00733 s] survived
+   - [#  67] CRP impl:33 : 
+--------------------------------------------------------------------------------
+ 29:                 day_limit = 28
+ 30:         
+ 31:         day = int(t[1])
+ 32:         if (day < 1 or day > day_limit):
+~33:             raise ValueError('mutpy'.format(day))
+ 34:         
+ 35:         self.date = date
+ 36:     
+ 37:     def set_name(self, name):
+ 38:         if (not isinstance(name, str)):
+--------------------------------------------------------------------------------
+[0.00630 s] survived
+   - [#  68] CRP impl:33 : 
+--------------------------------------------------------------------------------
+ 29:                 day_limit = 28
+ 30:         
+ 31:         day = int(t[1])
+ 32:         if (day < 1 or day > day_limit):
+~33:             raise ValueError(''.format(day))
+ 34:         
+ 35:         self.date = date
+ 36:     
+ 37:     def set_name(self, name):
+ 38:         if (not isinstance(name, str)):
+--------------------------------------------------------------------------------
+[0.00686 s] survived
+   - [#  69] CRP impl:39 : 
+--------------------------------------------------------------------------------
+ 35:         self.date = date
+ 36:     
+ 37:     def set_name(self, name):
+ 38:         if (not isinstance(name, str)):
+~39:             raise ValueError('mutpy')
+ 40:         tmp1 = name.lower()
+ 41:         if re.search('[^a-z0-9 -]', tmp1):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+ 43:         if (len(tmp1.strip()) < 2 or len(tmp1.replace('-', '')) < 2):
+ 44:             raise ValueError('name should be at least two characters long')
+--------------------------------------------------------------------------------
+[0.00695 s] survived
+   - [#  70] CRP impl:39 : 
+--------------------------------------------------------------------------------
+ 35:         self.date = date
+ 36:     
+ 37:     def set_name(self, name):
+ 38:         if (not isinstance(name, str)):
+~39:             raise ValueError('')
+ 40:         tmp1 = name.lower()
+ 41:         if re.search('[^a-z0-9 -]', tmp1):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+ 43:         if (len(tmp1.strip()) < 2 or len(tmp1.replace('-', '')) < 2):
+ 44:             raise ValueError('name should be at least two characters long')
+--------------------------------------------------------------------------------
+[0.00681 s] survived
+   - [#  71] CRP impl:41 : 
+--------------------------------------------------------------------------------
+ 37:     def set_name(self, name):
+ 38:         if (not isinstance(name, str)):
+ 39:             raise ValueError('name should be a string')
+ 40:         tmp1 = name.lower()
+~41:         if re.search('mutpy', tmp1):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+ 43:         if (len(tmp1.strip()) < 2 or len(tmp1.replace('-', '')) < 2):
+ 44:             raise ValueError('name should be at least two characters long')
+ 45:         if (not re.search('[a-z]', tmp1)):
+ 46:             raise ValueError('name should contain at least one character')
+--------------------------------------------------------------------------------
+[0.00764 s] killed by test_set_name_invalid_character_name (test_impl.TestPhysicalInfo)
+   - [#  72] CRP impl:41 : 
+--------------------------------------------------------------------------------
+ 37:     def set_name(self, name):
+ 38:         if (not isinstance(name, str)):
+ 39:             raise ValueError('name should be a string')
+ 40:         tmp1 = name.lower()
+~41:         if re.search('', tmp1):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+ 43:         if (len(tmp1.strip()) < 2 or len(tmp1.replace('-', '')) < 2):
+ 44:             raise ValueError('name should be at least two characters long')
+ 45:         if (not re.search('[a-z]', tmp1)):
+ 46:             raise ValueError('name should contain at least one character')
+--------------------------------------------------------------------------------
+[0.00689 s] killed by test_set_name_valid_values (test_impl.TestPhysicalInfo)
+   - [#  73] CRP impl:42 : 
+--------------------------------------------------------------------------------
+ 38:         if (not isinstance(name, str)):
+ 39:             raise ValueError('name should be a string')
+ 40:         tmp1 = name.lower()
+ 41:         if re.search('[^a-z0-9 -]', tmp1):
+~42:             raise ValueError('mutpy')
+ 43:         if (len(tmp1.strip()) < 2 or len(tmp1.replace('-', '')) < 2):
+ 44:             raise ValueError('name should be at least two characters long')
+ 45:         if (not re.search('[a-z]', tmp1)):
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+--------------------------------------------------------------------------------
+[0.00774 s] survived
+   - [#  74] CRP impl:42 : 
+--------------------------------------------------------------------------------
+ 38:         if (not isinstance(name, str)):
+ 39:             raise ValueError('name should be a string')
+ 40:         tmp1 = name.lower()
+ 41:         if re.search('[^a-z0-9 -]', tmp1):
+~42:             raise ValueError('')
+ 43:         if (len(tmp1.strip()) < 2 or len(tmp1.replace('-', '')) < 2):
+ 44:             raise ValueError('name should be at least two characters long')
+ 45:         if (not re.search('[a-z]', tmp1)):
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+--------------------------------------------------------------------------------
+[0.00717 s] survived
+   - [#  75] CRP impl:43 : 
+--------------------------------------------------------------------------------
+ 39:             raise ValueError('name should be a string')
+ 40:         tmp1 = name.lower()
+ 41:         if re.search('[^a-z0-9 -]', tmp1):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+~43:         if (len(tmp1.strip()) < 3 or len(tmp1.replace('-', '')) < 2):
+ 44:             raise ValueError('name should be at least two characters long')
+ 45:         if (not re.search('[a-z]', tmp1)):
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+--------------------------------------------------------------------------------
+[0.00690 s] survived
+   - [#  76] CRP impl:43 : 
+--------------------------------------------------------------------------------
+ 39:             raise ValueError('name should be a string')
+ 40:         tmp1 = name.lower()
+ 41:         if re.search('[^a-z0-9 -]', tmp1):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+~43:         if (len(tmp1.strip()) < 2 or len(tmp1.replace('mutpy', '')) < 2):
+ 44:             raise ValueError('name should be at least two characters long')
+ 45:         if (not re.search('[a-z]', tmp1)):
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+--------------------------------------------------------------------------------
+[0.00931 s] killed by test_set_name_one_character_long_name (test_impl.TestPhysicalInfo)
+   - [#  77] CRP impl:43 : 
+--------------------------------------------------------------------------------
+ 39:             raise ValueError('name should be a string')
+ 40:         tmp1 = name.lower()
+ 41:         if re.search('[^a-z0-9 -]', tmp1):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+~43:         if (len(tmp1.strip()) < 2 or len(tmp1.replace('', '')) < 2):
+ 44:             raise ValueError('name should be at least two characters long')
+ 45:         if (not re.search('[a-z]', tmp1)):
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+--------------------------------------------------------------------------------
+[0.00788 s] killed by test_set_name_one_character_long_name (test_impl.TestPhysicalInfo)
+   - [#  78] CRP impl:43 : 
+--------------------------------------------------------------------------------
+ 39:             raise ValueError('name should be a string')
+ 40:         tmp1 = name.lower()
+ 41:         if re.search('[^a-z0-9 -]', tmp1):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+~43:         if (len(tmp1.strip()) < 2 or len(tmp1.replace('-', 'mutpy')) < 2):
+ 44:             raise ValueError('name should be at least two characters long')
+ 45:         if (not re.search('[a-z]', tmp1)):
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+--------------------------------------------------------------------------------
+[0.00761 s] killed by test_set_name_one_character_long_name (test_impl.TestPhysicalInfo)
+   - [#  79] CRP impl:43 : 
+--------------------------------------------------------------------------------
+ 39:             raise ValueError('name should be a string')
+ 40:         tmp1 = name.lower()
+ 41:         if re.search('[^a-z0-9 -]', tmp1):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+~43:         if (len(tmp1.strip()) < 2 or len(tmp1.replace('-', '')) < 3):
+ 44:             raise ValueError('name should be at least two characters long')
+ 45:         if (not re.search('[a-z]', tmp1)):
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+--------------------------------------------------------------------------------
+[0.00673 s] survived
+   - [#  80] CRP impl:44 : 
+--------------------------------------------------------------------------------
+ 40:         tmp1 = name.lower()
+ 41:         if re.search('[^a-z0-9 -]', tmp1):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+ 43:         if (len(tmp1.strip()) < 2 or len(tmp1.replace('-', '')) < 2):
+~44:             raise ValueError('mutpy')
+ 45:         if (not re.search('[a-z]', tmp1)):
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+ 49:     def set_gender(self, gender):
+--------------------------------------------------------------------------------
+[0.00670 s] survived
+   - [#  81] CRP impl:44 : 
+--------------------------------------------------------------------------------
+ 40:         tmp1 = name.lower()
+ 41:         if re.search('[^a-z0-9 -]', tmp1):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+ 43:         if (len(tmp1.strip()) < 2 or len(tmp1.replace('-', '')) < 2):
+~44:             raise ValueError('')
+ 45:         if (not re.search('[a-z]', tmp1)):
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+ 49:     def set_gender(self, gender):
+--------------------------------------------------------------------------------
+[0.00729 s] survived
+   - [#  82] CRP impl:45 : 
+--------------------------------------------------------------------------------
+ 41:         if re.search('[^a-z0-9 -]', tmp1):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+ 43:         if (len(tmp1.strip()) < 2 or len(tmp1.replace('-', '')) < 2):
+ 44:             raise ValueError('name should be at least two characters long')
+~45:         if (not re.search('mutpy', tmp1)):
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+ 49:     def set_gender(self, gender):
+ 50:         if (gender != 'M' and gender != 'F'):
+--------------------------------------------------------------------------------
+[0.00800 s] killed by test_set_name_valid_values (test_impl.TestPhysicalInfo)
+   - [#  83] CRP impl:45 : 
+--------------------------------------------------------------------------------
+ 41:         if re.search('[^a-z0-9 -]', tmp1):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+ 43:         if (len(tmp1.strip()) < 2 or len(tmp1.replace('-', '')) < 2):
+ 44:             raise ValueError('name should be at least two characters long')
+~45:         if (not re.search('', tmp1)):
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+ 49:     def set_gender(self, gender):
+ 50:         if (gender != 'M' and gender != 'F'):
+--------------------------------------------------------------------------------
+[0.01010 s] killed by test_set_name_no_letter_name (test_impl.TestPhysicalInfo)
+   - [#  84] CRP impl:46 : 
+--------------------------------------------------------------------------------
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+ 43:         if (len(tmp1.strip()) < 2 or len(tmp1.replace('-', '')) < 2):
+ 44:             raise ValueError('name should be at least two characters long')
+ 45:         if (not re.search('[a-z]', tmp1)):
+~46:             raise ValueError('mutpy')
+ 47:         self.name = name
+ 48:     
+ 49:     def set_gender(self, gender):
+ 50:         if (gender != 'M' and gender != 'F'):
+ 51:             raise ValueError('gender should be either M or F')
+--------------------------------------------------------------------------------
+[0.00730 s] survived
+   - [#  85] CRP impl:46 : 
+--------------------------------------------------------------------------------
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+ 43:         if (len(tmp1.strip()) < 2 or len(tmp1.replace('-', '')) < 2):
+ 44:             raise ValueError('name should be at least two characters long')
+ 45:         if (not re.search('[a-z]', tmp1)):
+~46:             raise ValueError('')
+ 47:         self.name = name
+ 48:     
+ 49:     def set_gender(self, gender):
+ 50:         if (gender != 'M' and gender != 'F'):
+ 51:             raise ValueError('gender should be either M or F')
+--------------------------------------------------------------------------------
+[0.00695 s] survived
+   - [#  86] CRP impl:50 : 
+--------------------------------------------------------------------------------
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+ 49:     def set_gender(self, gender):
+~50:         if (gender != 'mutpy' and gender != 'F'):
+ 51:             raise ValueError('gender should be either M or F')
+ 52:         self.gender = gender
+ 53:     
+ 54:     def set_height(self, height):
+ 55:         if (not isinstance(height, int)):
+--------------------------------------------------------------------------------
+[0.00696 s] killed by test_set_gender_valid_values (test_impl.TestPhysicalInfo)
+   - [#  87] CRP impl:50 : 
+--------------------------------------------------------------------------------
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+ 49:     def set_gender(self, gender):
+~50:         if (gender != '' and gender != 'F'):
+ 51:             raise ValueError('gender should be either M or F')
+ 52:         self.gender = gender
+ 53:     
+ 54:     def set_height(self, height):
+ 55:         if (not isinstance(height, int)):
+--------------------------------------------------------------------------------
+[0.00851 s] killed by test_set_gender_valid_values (test_impl.TestPhysicalInfo)
+   - [#  88] CRP impl:50 : 
+--------------------------------------------------------------------------------
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+ 49:     def set_gender(self, gender):
+~50:         if (gender != 'M' and gender != 'mutpy'):
+ 51:             raise ValueError('gender should be either M or F')
+ 52:         self.gender = gender
+ 53:     
+ 54:     def set_height(self, height):
+ 55:         if (not isinstance(height, int)):
+--------------------------------------------------------------------------------
+[0.00694 s] killed by test_set_gender_valid_values (test_impl.TestPhysicalInfo)
+   - [#  89] CRP impl:50 : 
+--------------------------------------------------------------------------------
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+ 49:     def set_gender(self, gender):
+~50:         if (gender != 'M' and gender != ''):
+ 51:             raise ValueError('gender should be either M or F')
+ 52:         self.gender = gender
+ 53:     
+ 54:     def set_height(self, height):
+ 55:         if (not isinstance(height, int)):
+--------------------------------------------------------------------------------
+[0.00703 s] killed by test_set_gender_valid_values (test_impl.TestPhysicalInfo)
+   - [#  90] CRP impl:51 : 
+--------------------------------------------------------------------------------
+ 47:         self.name = name
+ 48:     
+ 49:     def set_gender(self, gender):
+ 50:         if (gender != 'M' and gender != 'F'):
+~51:             raise ValueError('mutpy')
+ 52:         self.gender = gender
+ 53:     
+ 54:     def set_height(self, height):
+ 55:         if (not isinstance(height, int)):
+ 56:             raise ValueError('height should be an integer')
+--------------------------------------------------------------------------------
+[0.00693 s] survived
+   - [#  91] CRP impl:51 : 
+--------------------------------------------------------------------------------
+ 47:         self.name = name
+ 48:     
+ 49:     def set_gender(self, gender):
+ 50:         if (gender != 'M' and gender != 'F'):
+~51:             raise ValueError('')
+ 52:         self.gender = gender
+ 53:     
+ 54:     def set_height(self, height):
+ 55:         if (not isinstance(height, int)):
+ 56:             raise ValueError('height should be an integer')
+--------------------------------------------------------------------------------
+[0.00717 s] survived
+   - [#  92] CRP impl:56 : 
+--------------------------------------------------------------------------------
+ 52:         self.gender = gender
+ 53:     
+ 54:     def set_height(self, height):
+ 55:         if (not isinstance(height, int)):
+~56:             raise ValueError('mutpy')
+ 57:         if (height < 17 or height > 84):
+ 58:             raise ValueError('height should be an integer between 17 and 84')
+ 59:         self.height = height
+ 60:     
+ 61:     def set_temperature(self, temperature):
+--------------------------------------------------------------------------------
+[0.00734 s] survived
+   - [#  93] CRP impl:56 : 
+--------------------------------------------------------------------------------
+ 52:         self.gender = gender
+ 53:     
+ 54:     def set_height(self, height):
+ 55:         if (not isinstance(height, int)):
+~56:             raise ValueError('')
+ 57:         if (height < 17 or height > 84):
+ 58:             raise ValueError('height should be an integer between 17 and 84')
+ 59:         self.height = height
+ 60:     
+ 61:     def set_temperature(self, temperature):
+--------------------------------------------------------------------------------
+[0.00676 s] survived
+   - [#  94] CRP impl:57 : 
+--------------------------------------------------------------------------------
+ 53:     
+ 54:     def set_height(self, height):
+ 55:         if (not isinstance(height, int)):
+ 56:             raise ValueError('height should be an integer')
+~57:         if (height < 18 or height > 84):
+ 58:             raise ValueError('height should be an integer between 17 and 84')
+ 59:         self.height = height
+ 60:     
+ 61:     def set_temperature(self, temperature):
+ 62:         if (not isinstance(temperature, float)):
+--------------------------------------------------------------------------------
+[0.00748 s] killed by test_set_height_valid_values (test_impl.TestPhysicalInfo)
+   - [#  95] CRP impl:57 : 
+--------------------------------------------------------------------------------
+ 53:     
+ 54:     def set_height(self, height):
+ 55:         if (not isinstance(height, int)):
+ 56:             raise ValueError('height should be an integer')
+~57:         if (height < 17 or height > 85):
+ 58:             raise ValueError('height should be an integer between 17 and 84')
+ 59:         self.height = height
+ 60:     
+ 61:     def set_temperature(self, temperature):
+ 62:         if (not isinstance(temperature, float)):
+--------------------------------------------------------------------------------
+[0.00720 s] killed by test_set_height_out_of_range (test_impl.TestPhysicalInfo)
+   - [#  96] CRP impl:58 : 
+--------------------------------------------------------------------------------
+ 54:     def set_height(self, height):
+ 55:         if (not isinstance(height, int)):
+ 56:             raise ValueError('height should be an integer')
+ 57:         if (height < 17 or height > 84):
+~58:             raise ValueError('mutpy')
+ 59:         self.height = height
+ 60:     
+ 61:     def set_temperature(self, temperature):
+ 62:         if (not isinstance(temperature, float)):
+ 63:             raise ValueError('temperature should be a float')
+--------------------------------------------------------------------------------
+[0.00657 s] survived
+   - [#  97] CRP impl:58 : 
+--------------------------------------------------------------------------------
+ 54:     def set_height(self, height):
+ 55:         if (not isinstance(height, int)):
+ 56:             raise ValueError('height should be an integer')
+ 57:         if (height < 17 or height > 84):
+~58:             raise ValueError('')
+ 59:         self.height = height
+ 60:     
+ 61:     def set_temperature(self, temperature):
+ 62:         if (not isinstance(temperature, float)):
+ 63:             raise ValueError('temperature should be a float')
+--------------------------------------------------------------------------------
+[0.00690 s] survived
+   - [#  98] CRP impl:63 : 
+--------------------------------------------------------------------------------
+ 59:         self.height = height
+ 60:     
+ 61:     def set_temperature(self, temperature):
+ 62:         if (not isinstance(temperature, float)):
+~63:             raise ValueError('mutpy')
+ 64:         if (temperature < 95 or temperature > 104):
+ 65:             raise ValueError('temperature should be a float between 95 and 104')
+ 66:         self.temperature = temperature
+--------------------------------------------------------------------------------
+[0.00820 s] survived
+   - [#  99] CRP impl:63 : 
+--------------------------------------------------------------------------------
+ 59:         self.height = height
+ 60:     
+ 61:     def set_temperature(self, temperature):
+ 62:         if (not isinstance(temperature, float)):
+~63:             raise ValueError('')
+ 64:         if (temperature < 95 or temperature > 104):
+ 65:             raise ValueError('temperature should be a float between 95 and 104')
+ 66:         self.temperature = temperature
+--------------------------------------------------------------------------------
+[0.00651 s] survived
+   - [# 100] CRP impl:64 : 
+--------------------------------------------------------------------------------
+ 60:     
+ 61:     def set_temperature(self, temperature):
+ 62:         if (not isinstance(temperature, float)):
+ 63:             raise ValueError('temperature should be a float')
+~64:         if (temperature < 96 or temperature > 104):
+ 65:             raise ValueError('temperature should be a float between 95 and 104')
+ 66:         self.temperature = temperature
+--------------------------------------------------------------------------------
+[0.00738 s] killed by test_set_temperature_valid_values (test_impl.TestPhysicalInfo)
+   - [# 101] CRP impl:64 : 
+--------------------------------------------------------------------------------
+ 60:     
+ 61:     def set_temperature(self, temperature):
+ 62:         if (not isinstance(temperature, float)):
+ 63:             raise ValueError('temperature should be a float')
+~64:         if (temperature < 95 or temperature > 105):
+ 65:             raise ValueError('temperature should be a float between 95 and 104')
+ 66:         self.temperature = temperature
+--------------------------------------------------------------------------------
+[0.00692 s] survived
+   - [# 102] CRP impl:65 : 
+--------------------------------------------------------------------------------
+ 61:     def set_temperature(self, temperature):
+ 62:         if (not isinstance(temperature, float)):
+ 63:             raise ValueError('temperature should be a float')
+ 64:         if (temperature < 95 or temperature > 104):
+~65:             raise ValueError('mutpy')
+ 66:         self.temperature = temperature
+--------------------------------------------------------------------------------
+[0.00752 s] survived
+   - [# 103] CRP impl:65 : 
+--------------------------------------------------------------------------------
+ 61:     def set_temperature(self, temperature):
+ 62:         if (not isinstance(temperature, float)):
+ 63:             raise ValueError('temperature should be a float')
+ 64:         if (temperature < 95 or temperature > 104):
+~65:             raise ValueError('')
+ 66:         self.temperature = temperature
+--------------------------------------------------------------------------------
+[0.00674 s] survived
+   - [# 104] LCR impl:15 : 
+--------------------------------------------------------------------------------
+ 11:         if re.search('[^0-9\\-]', date):
+ 12:             raise ValueError('date should contain only numbers and -')
+ 13:         
+ 14:         year = int(t[2])
+~15:         if (year < 1900 and year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+--------------------------------------------------------------------------------
+[0.00692 s] killed by test_set_date_invalid_year (test_impl.TestPhysicalInfo)
+   - [# 105] LCR impl:17 : 
+--------------------------------------------------------------------------------
+ 13:         
+ 14:         year = int(t[2])
+ 15:         if (year < 1900 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+~17:         is_leap = (year % 4 == 0 or (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+--------------------------------------------------------------------------------
+[0.00698 s] killed by test_set_date_invalid_day (test_impl.TestPhysicalInfo)
+   - [# 106] LCR impl:17 : 
+--------------------------------------------------------------------------------
+ 13:         
+ 14:         year = int(t[2])
+ 15:         if (year < 1900 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+~17:         is_leap = (year % 4 == 0 and (year % 400 == 0 and year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+--------------------------------------------------------------------------------
+[0.00599 s] killed by test_set_date_valid_values (test_impl.TestPhysicalInfo)
+   - [# 107] LCR impl:20 : 
+--------------------------------------------------------------------------------
+ 16:             raise ValueError('invalid year {0}'.format(year))
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+~20:         if (month < 1 and month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+ 23:         if month in [4, 6, 7, 9, 11]:
+ 24:             day_limit = 30
+ 25:         elif month == 2:
+--------------------------------------------------------------------------------
+[0.00661 s] killed by test_set_date_invalid_month (test_impl.TestPhysicalInfo)
+   - [# 108] LCR impl:32 : 
+--------------------------------------------------------------------------------
+ 28:             else:
+ 29:                 day_limit = 28
+ 30:         
+ 31:         day = int(t[1])
+~32:         if (day < 1 and day > day_limit):
+ 33:             raise ValueError('invalid day {0}'.format(day))
+ 34:         
+ 35:         self.date = date
+ 36:     
+ 37:     def set_name(self, name):
+--------------------------------------------------------------------------------
+[0.00653 s] killed by test_set_date_invalid_day (test_impl.TestPhysicalInfo)
+   - [# 109] LCR impl:43 : 
+--------------------------------------------------------------------------------
+ 39:             raise ValueError('name should be a string')
+ 40:         tmp1 = name.lower()
+ 41:         if re.search('[^a-z0-9 -]', tmp1):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+~43:         if (len(tmp1.strip()) < 2 and len(tmp1.replace('-', '')) < 2):
+ 44:             raise ValueError('name should be at least two characters long')
+ 45:         if (not re.search('[a-z]', tmp1)):
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+--------------------------------------------------------------------------------
+[0.00729 s] killed by test_set_name_one_character_long_name (test_impl.TestPhysicalInfo)
+   - [# 110] LCR impl:50 : 
+--------------------------------------------------------------------------------
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+ 49:     def set_gender(self, gender):
+~50:         if (gender != 'M' or gender != 'F'):
+ 51:             raise ValueError('gender should be either M or F')
+ 52:         self.gender = gender
+ 53:     
+ 54:     def set_height(self, height):
+ 55:         if (not isinstance(height, int)):
+--------------------------------------------------------------------------------
+[0.00688 s] killed by test_set_gender_valid_values (test_impl.TestPhysicalInfo)
+   - [# 111] LCR impl:57 : 
+--------------------------------------------------------------------------------
+ 53:     
+ 54:     def set_height(self, height):
+ 55:         if (not isinstance(height, int)):
+ 56:             raise ValueError('height should be an integer')
+~57:         if (height < 17 and height > 84):
+ 58:             raise ValueError('height should be an integer between 17 and 84')
+ 59:         self.height = height
+ 60:     
+ 61:     def set_temperature(self, temperature):
+ 62:         if (not isinstance(temperature, float)):
+--------------------------------------------------------------------------------
+[0.00691 s] killed by test_set_height_out_of_range (test_impl.TestPhysicalInfo)
+   - [# 112] LCR impl:64 : 
+--------------------------------------------------------------------------------
+ 60:     
+ 61:     def set_temperature(self, temperature):
+ 62:         if (not isinstance(temperature, float)):
+ 63:             raise ValueError('temperature should be a float')
+~64:         if (temperature < 95 and temperature > 104):
+ 65:             raise ValueError('temperature should be a float between 95 and 104')
+ 66:         self.temperature = temperature
+--------------------------------------------------------------------------------
+[0.00770 s] killed by test_set_temperature_out_of_range (test_impl.TestPhysicalInfo)
+   - [# 113] ROR impl:9  : 
+--------------------------------------------------------------------------------
+  5:     def set_date(self, date):
+  6:         if (not isinstance(date, str)):
+  7:             raise ValueError('date should be a string')
+  8:         t = date.split('-')
+~ 9:         if len(t) == 3:
+ 10:             raise ValueError('date should be in MM-DD-YYYY format')
+ 11:         if re.search('[^0-9\\-]', date):
+ 12:             raise ValueError('date should contain only numbers and -')
+ 13:         
+ 14:         year = int(t[2])
+--------------------------------------------------------------------------------
+[0.00687 s] killed by test_set_date_invalid_format (test_impl.TestPhysicalInfo)
+   - [# 114] ROR impl:15 : 
+--------------------------------------------------------------------------------
+ 11:         if re.search('[^0-9\\-]', date):
+ 12:             raise ValueError('date should contain only numbers and -')
+ 13:         
+ 14:         year = int(t[2])
+~15:         if (year > 1900 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+--------------------------------------------------------------------------------
+[0.00806 s] killed by test_set_date_invalid_year (test_impl.TestPhysicalInfo)
+   - [# 115] ROR impl:15 : 
+--------------------------------------------------------------------------------
+ 11:         if re.search('[^0-9\\-]', date):
+ 12:             raise ValueError('date should contain only numbers and -')
+ 13:         
+ 14:         year = int(t[2])
+~15:         if (year <= 1900 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+--------------------------------------------------------------------------------
+[0.00667 s] survived
+   - [# 116] ROR impl:15 : 
+--------------------------------------------------------------------------------
+ 11:         if re.search('[^0-9\\-]', date):
+ 12:             raise ValueError('date should contain only numbers and -')
+ 13:         
+ 14:         year = int(t[2])
+~15:         if (year < 1900 or year < 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+--------------------------------------------------------------------------------
+[0.00697 s] killed by test_set_date_invalid_year (test_impl.TestPhysicalInfo)
+   - [# 117] ROR impl:15 : 
+--------------------------------------------------------------------------------
+ 11:         if re.search('[^0-9\\-]', date):
+ 12:             raise ValueError('date should contain only numbers and -')
+ 13:         
+ 14:         year = int(t[2])
+~15:         if (year < 1900 or year >= 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+--------------------------------------------------------------------------------
+[0.00693 s] survived
+   - [# 118] ROR impl:17 : 
+--------------------------------------------------------------------------------
+ 13:         
+ 14:         year = int(t[2])
+ 15:         if (year < 1900 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+~17:         is_leap = (year % 4 != 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+--------------------------------------------------------------------------------
+[0.00630 s] killed by test_set_date_invalid_day (test_impl.TestPhysicalInfo)
+   - [# 119] ROR impl:17 : 
+--------------------------------------------------------------------------------
+ 13:         
+ 14:         year = int(t[2])
+ 15:         if (year < 1900 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+~17:         is_leap = (year % 4 == 0 and (year % 400 != 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+--------------------------------------------------------------------------------
+[0.00623 s] killed by test_set_date_invalid_day (test_impl.TestPhysicalInfo)
+   - [# 120] ROR impl:17 : 
+--------------------------------------------------------------------------------
+ 13:         
+ 14:         year = int(t[2])
+ 15:         if (year < 1900 or year > 2100):
+ 16:             raise ValueError('invalid year {0}'.format(year))
+~17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 == 0))
+ 18:         
+ 19:         month = int(t[0])
+ 20:         if (month < 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+--------------------------------------------------------------------------------
+[0.00647 s] killed by test_set_date_invalid_day (test_impl.TestPhysicalInfo)
+   - [# 121] ROR impl:20 : 
+--------------------------------------------------------------------------------
+ 16:             raise ValueError('invalid year {0}'.format(year))
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+~20:         if (month > 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+ 23:         if month in [4, 6, 7, 9, 11]:
+ 24:             day_limit = 30
+ 25:         elif month == 2:
+--------------------------------------------------------------------------------
+[0.00634 s] killed by test_set_date_invalid_month (test_impl.TestPhysicalInfo)
+   - [# 122] ROR impl:20 : 
+--------------------------------------------------------------------------------
+ 16:             raise ValueError('invalid year {0}'.format(year))
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+~20:         if (month <= 1 or month > 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+ 23:         if month in [4, 6, 7, 9, 11]:
+ 24:             day_limit = 30
+ 25:         elif month == 2:
+--------------------------------------------------------------------------------
+[0.00601 s] killed by test_set_date_valid_values (test_impl.TestPhysicalInfo)
+   - [# 123] ROR impl:20 : 
+--------------------------------------------------------------------------------
+ 16:             raise ValueError('invalid year {0}'.format(year))
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+~20:         if (month < 1 or month < 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+ 23:         if month in [4, 6, 7, 9, 11]:
+ 24:             day_limit = 30
+ 25:         elif month == 2:
+--------------------------------------------------------------------------------
+[0.00671 s] killed by test_set_date_invalid_month (test_impl.TestPhysicalInfo)
+   - [# 124] ROR impl:20 : 
+--------------------------------------------------------------------------------
+ 16:             raise ValueError('invalid year {0}'.format(year))
+ 17:         is_leap = (year % 4 == 0 and (year % 400 == 0 or year % 100 != 0))
+ 18:         
+ 19:         month = int(t[0])
+~20:         if (month < 1 or month >= 12):
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+ 23:         if month in [4, 6, 7, 9, 11]:
+ 24:             day_limit = 30
+ 25:         elif month == 2:
+--------------------------------------------------------------------------------
+[0.00653 s] killed by test_set_date_valid_values (test_impl.TestPhysicalInfo)
+   - [# 125] ROR impl:25 : 
+--------------------------------------------------------------------------------
+ 21:             raise ValueError('invalid month {0}'.format(month))
+ 22:         day_limit = 31
+ 23:         if month in [4, 6, 7, 9, 11]:
+ 24:             day_limit = 30
+~25:         elif month != 2:
+ 26:             if is_leap:
+ 27:                 day_limit = 29
+ 28:             else:
+ 29:                 day_limit = 28
+ 30:         
+--------------------------------------------------------------------------------
+[0.00588 s] killed by test_set_date_invalid_day (test_impl.TestPhysicalInfo)
+   - [# 126] ROR impl:32 : 
+--------------------------------------------------------------------------------
+ 28:             else:
+ 29:                 day_limit = 28
+ 30:         
+ 31:         day = int(t[1])
+~32:         if (day > 1 or day > day_limit):
+ 33:             raise ValueError('invalid day {0}'.format(day))
+ 34:         
+ 35:         self.date = date
+ 36:     
+ 37:     def set_name(self, name):
+--------------------------------------------------------------------------------
+[0.00729 s] killed by test_set_date_valid_values (test_impl.TestPhysicalInfo)
+   - [# 127] ROR impl:32 : 
+--------------------------------------------------------------------------------
+ 28:             else:
+ 29:                 day_limit = 28
+ 30:         
+ 31:         day = int(t[1])
+~32:         if (day <= 1 or day > day_limit):
+ 33:             raise ValueError('invalid day {0}'.format(day))
+ 34:         
+ 35:         self.date = date
+ 36:     
+ 37:     def set_name(self, name):
+--------------------------------------------------------------------------------
+[0.00708 s] survived
+   - [# 128] ROR impl:32 : 
+--------------------------------------------------------------------------------
+ 28:             else:
+ 29:                 day_limit = 28
+ 30:         
+ 31:         day = int(t[1])
+~32:         if (day < 1 or day < day_limit):
+ 33:             raise ValueError('invalid day {0}'.format(day))
+ 34:         
+ 35:         self.date = date
+ 36:     
+ 37:     def set_name(self, name):
+--------------------------------------------------------------------------------
+[0.00643 s] killed by test_set_date_invalid_day (test_impl.TestPhysicalInfo)
+   - [# 129] ROR impl:32 : 
+--------------------------------------------------------------------------------
+ 28:             else:
+ 29:                 day_limit = 28
+ 30:         
+ 31:         day = int(t[1])
+~32:         if (day < 1 or day >= day_limit):
+ 33:             raise ValueError('invalid day {0}'.format(day))
+ 34:         
+ 35:         self.date = date
+ 36:     
+ 37:     def set_name(self, name):
+--------------------------------------------------------------------------------
+[0.00625 s] killed by test_set_date_valid_values (test_impl.TestPhysicalInfo)
+   - [# 130] ROR impl:43 : 
+--------------------------------------------------------------------------------
+ 39:             raise ValueError('name should be a string')
+ 40:         tmp1 = name.lower()
+ 41:         if re.search('[^a-z0-9 -]', tmp1):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+~43:         if (len(tmp1.strip()) > 2 or len(tmp1.replace('-', '')) < 2):
+ 44:             raise ValueError('name should be at least two characters long')
+ 45:         if (not re.search('[a-z]', tmp1)):
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+--------------------------------------------------------------------------------
+[0.00742 s] killed by test_set_name_one_character_long_name (test_impl.TestPhysicalInfo)
+   - [# 131] ROR impl:43 : 
+--------------------------------------------------------------------------------
+ 39:             raise ValueError('name should be a string')
+ 40:         tmp1 = name.lower()
+ 41:         if re.search('[^a-z0-9 -]', tmp1):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+~43:         if (len(tmp1.strip()) <= 2 or len(tmp1.replace('-', '')) < 2):
+ 44:             raise ValueError('name should be at least two characters long')
+ 45:         if (not re.search('[a-z]', tmp1)):
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+--------------------------------------------------------------------------------
+[0.00722 s] survived
+   - [# 132] ROR impl:43 : 
+--------------------------------------------------------------------------------
+ 39:             raise ValueError('name should be a string')
+ 40:         tmp1 = name.lower()
+ 41:         if re.search('[^a-z0-9 -]', tmp1):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+~43:         if (len(tmp1.strip()) < 2 or len(tmp1.replace('-', '')) > 2):
+ 44:             raise ValueError('name should be at least two characters long')
+ 45:         if (not re.search('[a-z]', tmp1)):
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+--------------------------------------------------------------------------------
+[0.00908 s] killed by test_set_name_one_character_long_name (test_impl.TestPhysicalInfo)
+   - [# 133] ROR impl:43 : 
+--------------------------------------------------------------------------------
+ 39:             raise ValueError('name should be a string')
+ 40:         tmp1 = name.lower()
+ 41:         if re.search('[^a-z0-9 -]', tmp1):
+ 42:             raise ValueError('name should contain letters, numbers, -, and space')
+~43:         if (len(tmp1.strip()) < 2 or len(tmp1.replace('-', '')) <= 2):
+ 44:             raise ValueError('name should be at least two characters long')
+ 45:         if (not re.search('[a-z]', tmp1)):
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+--------------------------------------------------------------------------------
+[0.00686 s] survived
+   - [# 134] ROR impl:50 : 
+--------------------------------------------------------------------------------
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+ 49:     def set_gender(self, gender):
+~50:         if (gender == 'M' and gender != 'F'):
+ 51:             raise ValueError('gender should be either M or F')
+ 52:         self.gender = gender
+ 53:     
+ 54:     def set_height(self, height):
+ 55:         if (not isinstance(height, int)):
+--------------------------------------------------------------------------------
+[0.00696 s] killed by test_set_gender_invalid_values (test_impl.TestPhysicalInfo)
+   - [# 135] ROR impl:50 : 
+--------------------------------------------------------------------------------
+ 46:             raise ValueError('name should contain at least one character')
+ 47:         self.name = name
+ 48:     
+ 49:     def set_gender(self, gender):
+~50:         if (gender != 'M' and gender == 'F'):
+ 51:             raise ValueError('gender should be either M or F')
+ 52:         self.gender = gender
+ 53:     
+ 54:     def set_height(self, height):
+ 55:         if (not isinstance(height, int)):
+--------------------------------------------------------------------------------
+[0.00680 s] killed by test_set_gender_invalid_values (test_impl.TestPhysicalInfo)
+   - [# 136] ROR impl:57 : 
+--------------------------------------------------------------------------------
+ 53:     
+ 54:     def set_height(self, height):
+ 55:         if (not isinstance(height, int)):
+ 56:             raise ValueError('height should be an integer')
+~57:         if (height > 17 or height > 84):
+ 58:             raise ValueError('height should be an integer between 17 and 84')
+ 59:         self.height = height
+ 60:     
+ 61:     def set_temperature(self, temperature):
+ 62:         if (not isinstance(temperature, float)):
+--------------------------------------------------------------------------------
+[0.00683 s] killed by test_set_height_out_of_range (test_impl.TestPhysicalInfo)
+   - [# 137] ROR impl:57 : 
+--------------------------------------------------------------------------------
+ 53:     
+ 54:     def set_height(self, height):
+ 55:         if (not isinstance(height, int)):
+ 56:             raise ValueError('height should be an integer')
+~57:         if (height <= 17 or height > 84):
+ 58:             raise ValueError('height should be an integer between 17 and 84')
+ 59:         self.height = height
+ 60:     
+ 61:     def set_temperature(self, temperature):
+ 62:         if (not isinstance(temperature, float)):
+--------------------------------------------------------------------------------
+[0.00710 s] killed by test_set_height_valid_values (test_impl.TestPhysicalInfo)
+   - [# 138] ROR impl:57 : 
+--------------------------------------------------------------------------------
+ 53:     
+ 54:     def set_height(self, height):
+ 55:         if (not isinstance(height, int)):
+ 56:             raise ValueError('height should be an integer')
+~57:         if (height < 17 or height < 84):
+ 58:             raise ValueError('height should be an integer between 17 and 84')
+ 59:         self.height = height
+ 60:     
+ 61:     def set_temperature(self, temperature):
+ 62:         if (not isinstance(temperature, float)):
+--------------------------------------------------------------------------------
+[0.00618 s] killed by test_set_height_out_of_range (test_impl.TestPhysicalInfo)
+   - [# 139] ROR impl:57 : 
+--------------------------------------------------------------------------------
+ 53:     
+ 54:     def set_height(self, height):
+ 55:         if (not isinstance(height, int)):
+ 56:             raise ValueError('height should be an integer')
+~57:         if (height < 17 or height >= 84):
+ 58:             raise ValueError('height should be an integer between 17 and 84')
+ 59:         self.height = height
+ 60:     
+ 61:     def set_temperature(self, temperature):
+ 62:         if (not isinstance(temperature, float)):
+--------------------------------------------------------------------------------
+[0.00746 s] killed by test_set_height_valid_values (test_impl.TestPhysicalInfo)
+   - [# 140] ROR impl:64 : 
+--------------------------------------------------------------------------------
+ 60:     
+ 61:     def set_temperature(self, temperature):
+ 62:         if (not isinstance(temperature, float)):
+ 63:             raise ValueError('temperature should be a float')
+~64:         if (temperature > 95 or temperature > 104):
+ 65:             raise ValueError('temperature should be a float between 95 and 104')
+ 66:         self.temperature = temperature
+--------------------------------------------------------------------------------
+[0.00707 s] killed by test_set_temperature_out_of_range (test_impl.TestPhysicalInfo)
+   - [# 141] ROR impl:64 : 
+--------------------------------------------------------------------------------
+ 60:     
+ 61:     def set_temperature(self, temperature):
+ 62:         if (not isinstance(temperature, float)):
+ 63:             raise ValueError('temperature should be a float')
+~64:         if (temperature <= 95 or temperature > 104):
+ 65:             raise ValueError('temperature should be a float between 95 and 104')
+ 66:         self.temperature = temperature
+--------------------------------------------------------------------------------
+[0.00749 s] survived
+   - [# 142] ROR impl:64 : 
+--------------------------------------------------------------------------------
+ 60:     
+ 61:     def set_temperature(self, temperature):
+ 62:         if (not isinstance(temperature, float)):
+ 63:             raise ValueError('temperature should be a float')
+~64:         if (temperature < 95 or temperature < 104):
+ 65:             raise ValueError('temperature should be a float between 95 and 104')
+ 66:         self.temperature = temperature
+--------------------------------------------------------------------------------
+[0.00706 s] killed by test_set_temperature_out_of_range (test_impl.TestPhysicalInfo)
+   - [# 143] ROR impl:64 : 
+--------------------------------------------------------------------------------
+ 60:     
+ 61:     def set_temperature(self, temperature):
+ 62:         if (not isinstance(temperature, float)):
+ 63:             raise ValueError('temperature should be a float')
+~64:         if (temperature < 95 or temperature >= 104):
+ 65:             raise ValueError('temperature should be a float between 95 and 104')
+ 66:         self.temperature = temperature
+--------------------------------------------------------------------------------
+[0.00732 s] survived
+[*] Mutation score [2.24712 s]: 65.0%
+   - all: 143
+   - killed: 93 (65.0%)
+   - survived: 50 (35.0%)
+   - incompetent: 0 (0.0%)
+   - timeout: 0 (0.0%)

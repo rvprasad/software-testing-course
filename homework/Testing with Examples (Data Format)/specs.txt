@@ -1,0 +1,19 @@
+Specs:
+  - Name should 
+    - be a string
+    - can only contain alphanumeric, ' ', or '-' character
+    - contain at least 2 alphanumeric characters
+    - contain at least one character from English alphabet
+  - Gender should
+    - be a string
+    - be either 'M' or 'F'
+  - Height should
+    - be an integer
+    - be a value between 17 and 84 (both inclusive)
+    - measured in inches
+  - Temperature should
+    - be a float
+    - be a value between 95 and 104 (both inclusive)
+    - measured in farenheit
+  - Date should be valid
+    - be a year between 1900 and 2100 (both inclusive)

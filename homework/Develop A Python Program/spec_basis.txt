@@ -1,0 +1,32 @@
+class PropertyContainer(object):
+    def __init__(self):
+    def set_property(self, prop, value):
+    def get_property(self, prop):
+    def has_property(self, prop):
+class Node(PropertyContainer):
+class Edge(PropertyContainer):
+    def __init__(self, node1, node2):
+class Network(object):
+    NAME_PROP = "name"     # NAME_PROP is an optional string property
+    FRIEND_PROP = "friend" # FRIEND_PROP is an optional boolean property
+    def __init__(self):
+    def create_person(self):
+    # add prop to value; overwrite if prop exists
+    def add_person_property(self, person, prop, value):
+        # flag non-existent person
+        # disallow non-string NAME_PROP property
+        # disallow multiple people to have the same name
+    def add_relation(self, person1, person2):
+        # flag non-existent persons
+        # flag existing edge
+    def add_relation_property(self, person1, person2, prop, value):
+        # disallow non-boolean FRIEND_PROP property
+        # flag non-existent relation
+    # get a person with given name
+    def get_person(self, name):
+        # disallow non-string values for name
+        # flag non-existent person
+    # get friends of friends of a person with given name
+    def friends_of_friends(self, name):
+        # disallow non-string values for name
+        # flag non-existent person

@@ -1,0 +1,32 @@
+The specs from class.
+
+1) Date needs to be MM-DD-YYYY.  
+1.1) MM, DD, and YYYY should be numbers.
+2) 1900-2100 (both inclusive) is the valid range for year in date.
+3) Name has to be at least 2 characters
+4) Gender values are "M" and "F"
+5) Valid character class for Names is alphanum, ' ', and '-'
+6) 95-104 (both inclusive) is the valid range for temperature.
+6.1) temperature should be a float.  
+6.2) unit is Fahrenheit.  (Does this matter?)
+7) Date is a valid calendar date.
+8) 17-84 (both inclusive) is the valid range for height.
+8.1) height should be an integer (given in the problem)
+8.2) unit is Inches.  
+9) Name contains at least 1 alphabet character.
+10) Name can be a single word.
+11) Name cannot be just spaces.
+12) No restriction max length of Name.
+13) 2 digit precision for temperature.
+
+
+Things to think about
+- How does 6.1 or 8.2 help the tester or the developer?)
+- Can you test for (13)?
+- About name,
+  - (3) and (12) constraint the length of Name
+  - (5) constraints the class of characters that can occur in Name
+  - (10) constraints the structure of Name (in terms of words)
+  - (9) and (11) constraints the composition of Name (in terms of how many characters of specific class).
+    - Given (9), 11 is redundant.
+  - These constraints allow for names such as "A " or "9-".  We can address this with one more constraint -- (14) Name contains at least 2 alphanumeric character.  This was the only missed constraint.

@@ -1,0 +1,32 @@
+Add this to class 
+
+vehicle = Vehicle()
+vehicle.set_capacity(5)
+vehicle.set_wheels(4)
+
+-----
+
+vehicle = vehicle.Vehicle()
+vehicle.turn_engine_on()
+
+vehicle.turn_engine_off()
+
+-----
+
+def __init__(self, *args, **kwargs):
+    super(TestVehicleMovement, self).__init__(*args, **kwargs)
+    self.vehicle = vehicle.Vehicle()
+    self.vehicle.turn_engine_on()
+    
+-----
+
+def setUp(self):
+    self.vehicle = vehicle.Vehicle()
+    self.vehicle.turn_engine_on()
+
+def tearDown(self):
+    self.vehicle.turn_engine_off()
+    self.vehicle = None
+
+-----
+

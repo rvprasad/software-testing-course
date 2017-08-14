@@ -1,0 +1,18 @@
+Implement/Test a map-like data structure that supports the following operations:
+
+  - Create: add the given key to the data structure with no mapping
+    - return True if key does not exist
+    - return False if key exists
+  - Read: retrieve the value corresponding to the given key
+    - raise NonexistentKeyError if key does not exist
+    - raise UnmappedKeyError if key exists but isn’t mapped
+    - return mapped value if key exists in the data structure
+  - Update: map the given key to the given value
+    - return True if key exists 
+    - return False if key does not exist
+  - Delete: remove the key and the mapped value
+    - return True if key exists
+    - return False if key does not exist
+
+
+How would the above specs change if we allow Update to add a mapping from a key to a value when the key does not exist in the data structure?

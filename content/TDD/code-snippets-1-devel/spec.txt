@@ -1,0 +1,10 @@
+- x, y, and z have to be integers (we'll assume length of sides are integers)
+
+- if all three sides are equal, then return "equilateral"
+- if two sides are equal, then return "isoceles"
+- if no sides are equal, then return "scalene"
+
+- sides should be greater than 0 in length; if not, raise RuntimeError
+- sides put together form a triangle
+  - sum of two sides should be greater than the third side
+  - return "Not a triangle"

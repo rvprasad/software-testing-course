@@ -1,0 +1,36 @@
+DataStore
+  - each entry is unique in terms the associated name
+  - create
+    - return true if new entry was created
+    - return false otherwise
+  - read
+    - return value if entry with name exists
+    - raise RuntimeError if entry with name does not exist
+  - update
+    - return true if entry existed for name and was updated
+    - return false otherwise
+  - delete
+    - return true if entry existed for name and was deleted
+    - return false otherwise
+
+
+AuthenticationComponent
+  - user names are unique
+  - user_name should be stored as name in the DataStore
+  - create_user
+    - return true if new user with given name was created
+    - return false otherwise
+    - requires no more than 1 DataStore operations
+  - login_user
+    - return true if user with given name and password existed
+    - return false otherwise
+    - requires no more than 1 DataStore operations
+  - change_password
+    - return true if user with given name existed and password was changed
+    - return false otherwise
+    - requires no more than 1 DataStore operations
+  - rename_user 
+    - return true if user with given name existed and there was no other user with new name
+    - return false otherwise
+    - requires no more than 3 DataStore operations
+    - same user_name and new_user_name returns True

@@ -1,0 +1,22 @@
++ Network
+  - name property is optional and string valued 
+  - friend property is optional and boolean valued 
+  - name property is named "name"
+  - friend property is named "friend"
+  + add_person_property
+    - disallow non-string values for name property by raising TypeError exception
+    - disallow multiple people to have the same name by raising ValueError exception
+    - flag non-existent person by raising RuntimeError exception
+  + add_relation
+    - flag non-existent persons by raising RuntimeError exception
+    - flag existing edge by raising ValueError exception
+  + add_relation_property
+    - disallow non-boolean friend property by raising TypeError exception
+    - flag non-existent relation by raising RuntimeError exception
+  + get_person
+    - disallow non-string values as name argument by raising TypeError exception
+    - flag non-existent person by raising RuntimeError exception 
+  + friends_of_friends
+    - disallow non-string values as name argument by raising TypeError exception
+    - flag non-existent person by raising RuntimeError exception
+    - returns only the friends of friends (two hops from the source)

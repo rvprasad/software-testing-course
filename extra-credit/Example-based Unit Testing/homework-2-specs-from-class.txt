@@ -1,0 +1,16 @@
+Given the signature tic_tac_toe_check(config), the specs are
+
+1) config is of list type
+2) config has 9 elements
+3) All elements of config are of length 1
+4) tic_tac_toe_check returns the symbol forming the winning pattern 
+5) if no winner, return None
+6) 'x', 'o', and '' as the only allowed elements in config
+7) if there is more than 1 winner, then flag error by raising ValueError exception
+8) config represents the board left to right and top to bottom
+
+(4) was given as part of the problem.
+
+Given (6), (3) is redundant.
+
+When 1 and 2 are violated, the function should raise TypeError exception.

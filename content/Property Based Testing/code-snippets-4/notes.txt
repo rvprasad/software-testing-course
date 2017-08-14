@@ -1,0 +1,17 @@
+INSTALL:
+pip install pytest-timeout
+
+
+CODE:
+@pytest.mark.timeout(timeout=N seconds, method=thread|signal)
+
+
+EXECUTION:
+py.test 
+py.test -k "p2" 
+- timeout parameters are specified in the test
+
+py.test --timeout=10 --timeout_method=thread -k "v2"
+- timeout parameters are not specified in the test.
+- when both are specified, the specs in test take precedence.
+
