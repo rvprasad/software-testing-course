@@ -3,6 +3,7 @@
 This is the content of software testing techniques course offered at Kansas State University in Spring'16 and Spring'17.  It was intended for upper undergraduates (seniors) and beginning graduates.  It required students to have taken courses on programming, logic, software design, and discrete mathematics.
 
 Here are some aspects of the course.
+
     - Class room instruction revolved around open questions posed to students.  [Socratic Method]
     - Students answers were collected on the whiteboard and discussed to arrive at "expert" answers.
     - Students directed instructor in live coding sessions to arrive at "expert" solutions.
