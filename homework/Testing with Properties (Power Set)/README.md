@@ -1,4 +1,4 @@
-George has written a Python function *make_power_set(s)* that calculates the power set of the set of unique values provided in s.  Your task is to help George test *make_power_set* function.
+George has written a Python function `make_power_set(s)` that calculates the power set of the set of unique values provided in s.  Your task is to help George test `make_power_set` function.
 
 Submit your tests in a single file named *test_impl.py*.
 

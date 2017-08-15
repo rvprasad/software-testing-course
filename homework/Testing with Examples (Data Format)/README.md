@@ -1,20 +1,20 @@
-Upon Neo's request, Trinity has implemented a _PhysicalInfo_ class (in Python) to store the following information from physical examination of patients.
+Upon Neo's request, Trinity has implemented a `PhysicalInfo` class (in Python) to store the following information from physical examination of patients.
 
-  - Date of examination
-  - Patient's Name
-  - Patient's Gender
-  - Patient's Height
-  - Patient's Temperature
+- Date of examination
+- Patient's Name
+- Patient's Gender
+- Patient's Height
+- Patient's Temperature
 
 This class provides the following setter methods.
 
-  - set_date(string)
-  - set_name(string)
-  - set_gender(string)
-  - set_height(int)
-  - set_temperature(float)
+- set_date(string)
+- set_name(string)
+- set_gender(string)
+- set_height(int)
+- set_temperature(float)
 
-If the values are invalid, then these setter methods will raise a _ValueError_ exception.  If not, then they will merely return. [20 points]
+If the values are invalid, then these setter methods will raise a `ValueError` exception.  If not, then they will merely return. [20 points]
 
 Your task is to help Neo by writing unit tests to test Trinity's implementation.
 

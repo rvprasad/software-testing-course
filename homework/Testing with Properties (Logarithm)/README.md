@@ -1,4 +1,4 @@
-George has written a Python function *log(n, b)* that calculates the base b logarithm of n when both b and n are valid; otherwise, it raises ValueError exception.  Your task is to use property-based testing to help George test his *log* function.
+George has written a Python function `log(n, b)` that calculates the base b logarithm of n when both b and n are valid; otherwise, it raises ValueError exception.  Your task is to use property-based testing to help George test his `log` function.
 
 Since George does not trust any exponentiation and logarithm support in Python (including any exponentiation and logarithm support you can implement as part of your tests), your tests cannot use any sort of exponentiation or logarithm support in Python to (directly or indirectly) construct the expected outcome.  So, solutions such as `assert b ** log(n, b) == n` or `assert log(n, b) == math.log(n, b)` are not allowed.  However, George is fine if you want to use exponentiation to transform/generate test data.  Also, George wants the tests to be based on varying inputs (unlike in example-based tests).
 

@@ -6,7 +6,7 @@ She expects the authentication component to use the data store provided by her t
  - use it to only store user information and
  - use as fewer data store interactions as possible to realize each of the offered services (methods) (without saving any data in the component).
 
-She wants you to write a test suite to test *AuthenticationComponent*.  Since the implementation of the data store is not available, she expects your tests to rely on test doubles.  Also, since the developers are still implementing the component, your tests should be based on the specification of the component (and the data store).
+She wants you to write a test suite to test `AuthenticationComponent`.  Since the implementation of the data store is not available, she expects your tests to rely on test doubles.  Also, since the developers are still implementing the component, your tests should be based on the specification of the component (and the data store).
 
 ```
 class AuthenticationComponent(object):
@@ -92,7 +92,7 @@ class DataStore(object):
 
 Submit your test suite along with the test double(s) in a single file named *test_impl.py*.
 
-We will place your tests in a folder along with *authentication_component_impl.py *and *data_store_interface.py*, and execute `pytest test_impl.py`.  So, add the following import statements to your *test_impl.py* and use the imported identifiers to test the provided implementation.
+We will place your tests in a folder along with *authentication_component_impl.py* and *data_store_interface.py*, and execute `pytest test_impl.py`.  So, add the following import statements to your *test_impl.py* and use the imported identifiers to test the provided implementation.
 ```
 from data_store_interface import DataStore
 from authentication_component_impl import AuthenticationComponent

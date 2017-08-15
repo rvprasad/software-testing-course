@@ -2,6 +2,7 @@ In this assignment, you will explore some aspects of behavior-driven development
 
 It is January 14th, 2017, and Mark Gates has asked you to code up a data structure to represent people (as nodes) and relations between people (as edges).  Instead of rushing to code up the data structure in Python (as you did in homework 1), you have decided to use BDD this time.  So, you will specify the features of the data structure desired of any implementation that conforms to the below interface.
 
+```
   class Network(object):
     def __init__(self):
       # constructor
@@ -24,6 +25,7 @@ It is January 14th, 2017, and Mark Gates has asked you to code up a data structu
     def friends_of_friends(self, name):
       # get a list of friends of friends of the person with given name
       pass
+```
 
 Your task is to specify the following feature as done in BDD.
 
@@ -33,7 +35,7 @@ You should consider both correct and incorrect uses of the feature and the corre
 
 Place your .feature files in solution/features folder, your steps files in solution/features/steps folder, create a zip file of solution folder (including all .feature and steps files), and submit this zip file.
 
-To evaluate your solution, we will use PyTest and behave.  We will unzip your submission file, copy an implementation as impl.py into solution/src folder, and execute "behave" in solution folder.  We will evaluate your features and steps on how best they can flag incorrect implementations and not flag correct implementations.
+To evaluate your solution, we will use PyTest and behave.  We will unzip your submission file, copy an implementation as *impl.py* into solution/src folder, and execute `behave` in solution folder.  We will evaluate your features and steps on how best they can flag incorrect implementations and not flag correct implementations.
 
 Please resolve any ambiguities about the problem by discussing them with the TA or the instructor ONLY via email or in-person.  When you identify ambiguities, describe them precisely and pose questions about them that will help you resolve ambiguities.  Examples of bad questions would be "what is missing in my implementation?" and "do you think my implementation is complete?"  Examples of good questions would be "Am I right in assuming sun goes around the moon?" and "when you said celestial bodies, did you mean the sun or the moon or something else?"
 

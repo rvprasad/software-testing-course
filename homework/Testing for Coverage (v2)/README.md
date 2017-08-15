@@ -14,7 +14,7 @@ To evaluate your tests, we will use PyTest with the plugins Hypothesis, Pytest-t
 2. `pytest test_impl.py` to evaluate your tests against other correct/incorrect implementations.
 Make sure your test suite tests the UUT by importing it (via `import impl`) and using it appropriately (e.g., via _impl._ prefix).  Also, decorate your tests with appropriate _pytest.mark.timeout_ decorators to handle runaway behavior of implementations.  We will evaluate your tests based on their ability to identify/flag correct and incorrect BST implementations.
 
-To expedite grading of the homework, please ensure the name of the test case function/method that tests method X has the prefix *test_X*, e.g., a test case function/method that tests a specification of BST.insert should have the prefix *test_insert*.
+To expedite grading of the homework, please ensure the name of the test case function/method that tests method X has the prefix *test_X*, e.g., a test case function/method that tests a specification of `BST.insert` should have the prefix *test_insert*.
 
 Please resolve any ambiguities about the problem by discussing them with the TA or the instructor ONLY via email or in-person.  When you identify ambiguities, describe them precisely and pose questions about them that will help you resolve ambiguities.  Examples of bad questions would be "what is missing in my implementation?" and "do you think my implementation is complete?"  Examples of good questions would be "Am I right in assuming sun goes around the moon?" and "when you said celestial bodies, did you mean the sun or the moon or something else?"
 

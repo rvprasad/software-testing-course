@@ -1,4 +1,4 @@
-Joan is almost done implementing a cool tic-tac-toe game.  However, she is running short on time to complete the implementation.  She needs help implementing a function *tic_tac_toe_check* that checks if the given board configuration (a list of strings) has one winning (three-in-a-row/column/diagonal) pattern and returns the symbol used to form the winning pattern.
+Joan is almost done implementing a cool tic-tac-toe game.  However, she is running short on time to complete the implementation.  She needs help implementing a function `tic_tac_toe_check` that checks if the given board configuration (a list of strings) has one winning (three-in-a-row/column/diagonal) pattern and returns the symbol used to form the winning pattern.
 
 Your task is to help Joan by implementing this function. [15 points]
 

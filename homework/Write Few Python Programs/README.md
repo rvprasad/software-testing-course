@@ -1,8 +1,9 @@
 This homework will be composed of writing two questions.
 
-1. Implement a function *anagram_check* that accepts two strings and checks if the second string is an anagram of the first string.  All whitespace characters in the strings should be ignored.  You can assume 1) the inputs will be based only on the words in words.txt and 2) the file will exist in the same folder as your submission file.  This question is an opportunity to explore complex data types and related libraries in Python. [6 points]
+1. Implement a function `anagram_check` that accepts two strings and checks if the second string is an anagram of the first string.  All whitespace characters in the strings should be ignored.  You can assume 1) the inputs will be based only on the words in words.txt and 2) the file will exist in the same folder as your submission file.  This question is an opportunity to explore complex data types and related libraries in Python. [6 points]
 
-2. Implement a *ShopInfo* class whose instances can store the following information about shops in US.
+2. Implement a `ShopInfo` class whose instances can store the following information about shops in US.
+
     - Name: string
     - Phone: int
     - Email: string
@@ -14,7 +15,7 @@ This homework will be composed of writing two questions.
     - get_email
     - get_website
 
-    Getter methods should return only valid (well-formed) values or raise *ValueError* exception.  This question is an opportunity to explore classes in Python and test-related thinking. [7 points]
+    Getter methods should return only valid (well-formed) values or raise `ValueError` exception.  This question is an opportunity to explore classes in Python and test-related thinking. [7 points]
 
 Submit your implementations in a single file named *impl.py*.
 

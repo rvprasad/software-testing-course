@@ -1,4 +1,4 @@
-George has implemented the stack (LIFO) data structure as *Stack* class in Python. The signature of the class is given below.
+George has implemented the stack (LIFO) data structure as `Stack` class in Python. The signature of the class is given below.
 ```
   class Stack(object):
     def push(self, v):  # pushes v on top of the stack; no return value
@@ -9,7 +9,7 @@ George has implemented the stack (LIFO) data structure as *Stack* class in Pytho
       ....
 ```
 
-*Stack.push* method will raise *ValueError* exception if the value being pushed is *None, Nan, and Inf*.  *Stack.pop* method will return *None* if the stack is empty.  Stack is a heterogeneous container.
+`Stack.push` method will raise `ValueError` exception if the value being pushed is `None, Nan,` and `Inf`.  `Stack.pop` method will return `None` if the stack is empty.  Stack is a heterogeneous container.
 
 Your task is to use property-based testing to help George test his Stack class.
 
