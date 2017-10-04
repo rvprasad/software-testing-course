@@ -1,6 +1,6 @@
 # Software Testing Techniques Course
 
-This is the content of **software testing techniques** course offered at Kansas State University in Spring'16 and Spring'17.  The course is intended for upper-level undergraduates (seniors) and beginning graduates.  It requires students to have taken courses on programming, logic, software design, and discrete mathematics.
+This is the content of **Software Testing Techniques (CIS640)** course offered at Kansas State University in Spring'16 and Spring'17.  The course is intended for upper-level undergraduates (seniors) and beginning graduates.  It requires students to have taken courses on programming, logic, software design, and discrete mathematics.
 
 ## Aspects of the Course
 
