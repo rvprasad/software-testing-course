@@ -27,6 +27,17 @@ Following external material was also provided as extra material.
 - [Race Conditions, Distribution, and Interactions -- Testing the Hard Stuff and Staying Sane](https://vimeo.com/68383317)
 - [QuickCheck: A Lightweight Tool for Random Testing of Haskell Programs](http://dl.acm.org/citation.cfm?id=351266) by Koen Claessen and John Hughes.  ACM SIGPLAN International Conference on Functional Programming (ICFP) 2000.
 
+Following tools were used.
+- [Python 3.5](https://www.python.org/)
+- [PyTest 3.0.6](http://pytest.org/latest/contents.html)
+- [Pytest-Finer-Verdicts 1.0.4](https://pypi.python.org/pypi/pytest-finer-verdicts/)
+- [Pytest-Html 1.13.0](https://pypi.python.org/pypi/pytest-html/1.16.0)
+- [Hypothesis 3.7.0](http://hypothesis.readthedocs.io/)
+- [Pytest-Cov 2.4.0](https://pypi.python.org/pypi/pytest-cov/2.2.1)
+- [Pytest-Timeout 1.2.0](https://pypi.python.org/pypi/pytest-timeout/1.2.0)
+- [Behave 1.2.5](https://pypi.python.org/pypi/behave)
+- [Mutpy](https://bitbucket.org/khalas/mutpy)
+
 I hope folks will find this useful.
 
 
