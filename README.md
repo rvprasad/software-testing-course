@@ -19,7 +19,7 @@ The content contains
 - extra credit assignments along with solutions and scripts to evaluate submissions, and
 - mid-term and end-term exams with solutions.
 
-Following external material was also provided as extra material.
+Following external material was provided as extra material.
 - [Basic Concepts and Taxonomy of Dependable and Secure Computing](http://ieeexplore.ieee.org/document/1335465/) by Algirdas Avizienis, Jean-Claude Laprie, Brian Randell, and Carl Landwehr.  IEEE Transactions of Dependable and Secure Computing, Vol 1, No 1, Jan-Mar 2004.
 - [Parameterized Unit Tests](http://www.microsoft.com/en-us/research/wp-content/uploads/2005/01/ParameterizedUnitTestsFSE05.pdf) by Nikolai Tillmann and Wolfram Schulte.  ACM SIGSOFT International Symposium on Foundations of Software Engineering (FSE) 2005.
 - [An Introduction to Property-based Testing (Part 1)](http://fsharpforfunandprofit.com/posts/property-based-testing/)
